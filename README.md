@@ -46,12 +46,15 @@ This sets up the necessary project structure and dependencies.
 
 ## Navigating ad Customizing a Web Application in VSCode
 In VSCode's file explorer, I navigated the project directory. The src folder contained Java application logic, while the webapp folder held web resources like HTML, JSP files, and static assets.
+
 The index.jsp file acted as the main entry point. Using VSCode, I edited index.jsp to adjust the front-end's message.
+
 ![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
 
 # Connect a GitHub Repo with AWS
 ## Streamlining Version Control and Collaboration 
-GitHub is a platform for version control and collaboration built on Git, enabling multiple developers to work on a project simultaneously, track changes, and manage code versions. In this project, I created a remote GitHub repository, generated a Personal Access Token (PAT) for authentication, and pushed local changes to keep the project files backed up and accessible. 
+GitHub is a platform for version control and collaboration built on Git, enabling multiple developers to work on a project simultaneously, track changes, and manage code versions. In this project, I created a remote GitHub repository, generated a Personal Access Token (PAT) for authentication, and pushed local changes to keep the project files backed up and accessible.
+
 To set up version control, I installed Git on my EC2 instance using the commands sudo apt-get update and sudo apt-get install git, allowing me to track changes locally, while GitHub acted as the remote repository for collaboration and version management.
 
 ## Setting Up the Local Repository
