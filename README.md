@@ -32,20 +32,17 @@ mvn archetype:generate
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
 #### Setting Up Git and GitHub on an EC2 Instance  
-
-I set up Git on the EC2 instance with:  
-
+Git was installed on the EC2 instance using:  
 ```
 sudo apt-get update
 sudo apt-get install git
 ```  
-Next, I configured Git to track commits with my identity:  
-
+Next, Git was configured to track commits by setting the user identity:  
 ```
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```  
-Finally, I linked a GitHub repository for version control and collaboration, using a Personal Access Token (PAT) to securely push and pull code.  
+Finally, a GitHub repository was linked to the EC2 instance for version control and collaboration, with a Personal Access Token (PAT) ensuring secure push and pull operations.  
 
 ### Dependency Management with AWS CodeArtifact
 To securely manage dependencies, AWS CodeArtifact was configured with:
