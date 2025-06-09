@@ -16,7 +16,7 @@ GitHub was used for version control, ensuring that any changes automatically tri
 The development process started by configuring a remote EC2 instance and setting up secure SSH access with a key pair. I secured the private key by setting its permissions to read-only for the owner, preventing unauthorized access.
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
 
-Using the "Remote – SSH extension" in Visual Studio Code, remote development felt seamless. Once the key pair was ready, I connected to the EC2 instance with `ssh -i "nextwork keypair.pem" ec2-user@44.202.28.117`, enabling interaction via its public IPv4 DNS address.
+Using the "Remote – SSH extension" in Visual Studio Code, remote development felt seamless. Once the key pair was ready, I connected to the EC2 instance with `ssh -i "shanikah-keypair.pem" ec2-user@44.202.28.117`, enabling interaction via its public IPv4 DNS address.
 
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
