@@ -44,22 +44,20 @@ git config --global user.email "your.email@example.com"
 ```  
 Finally, a GitHub repository was linked to the EC2 instance for version control and collaboration, with a Personal Access Token (PAT) ensuring secure push and pull operations.  
 
-### Dependency Management with AWS CodeArtifact
+### Secure Packages with AWS CodeArtifact
 To securely manage dependencies, AWS CodeArtifact was configured with:
 - A custom domain and repository
 - Maven Central as the upstream source
+![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
 - An IAM role attached to the EC2 instance to handle authentication
+![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
 
 Once properly configured, Maven successfully pulled packages from CodeArtifact using a `settings.xml` file.
 
-![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
-
-
-![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
-
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
-
+#### Verifying the Connection
+After compiling, I checked the CodeArtifact repository and confirmed that Maven packages were listed, indicating a siccessful connection
 ![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
 
 ### Continuous Integration with AWS CodeBuild
