@@ -55,12 +55,24 @@ Initial builds highlighted configuration issues, which were resolved by updating
 
 ![image](https://github.com/user-attachments/assets/a595003a-cbe0-4499-8e4d-f45036f29c2e)
 
+![image](https://github.com/user-attachments/assets/3fb0b249-38ca-44d1-a0e1-faecbfd9caa3)
+
 ### Automated Deployment with AWS CodeDeploy
 Infrastructure resources (EC2, VPC, networking) were defined using CloudFormation for repeatability. Deployment lifecycle was controlled with:
 - Custom scripts (install_dependencies.sh, start_server.sh, stop_server.sh)
 - An appspec.yml to coordinate execution
 
 A CodeDeploy deployment group targeted EC2 instances using tags. After deployment, the application was verified through the public DNS.
+![image](https://github.com/user-attachments/assets/7c8da34c-ba9d-43c6-8993-29ad65bd2df6)
+
+
+![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
+
+
+![image](https://github.com/user-attachments/assets/ef2b3d82-4963-4a6d-8e47-4a39a643f435)
+
+
+![image](https://github.com/user-attachments/assets/071187cc-745b-480a-aa42-27f1df968634)
 
 ### Pipeline Automation with AWS CodePipeline
 A three-stage pipeline was implemented:
@@ -97,20 +109,6 @@ Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
 ![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
 
-
-![image](https://github.com/user-attachments/assets/3fb0b249-38ca-44d1-a0e1-faecbfd9caa3)
-
-
-![image](https://github.com/user-attachments/assets/7c8da34c-ba9d-43c6-8993-29ad65bd2df6)
-
-
-![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
-
-
-![image](https://github.com/user-attachments/assets/ef2b3d82-4963-4a6d-8e47-4a39a643f435)
-
-
-![image](https://github.com/user-attachments/assets/071187cc-745b-480a-aa42-27f1df968634)
 
 
 ![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
