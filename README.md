@@ -1,7 +1,7 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
 ![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
 ## Project Overview
-In this project, the goal was to set up a fully automated CI/CD pipeline using AWS services for a Java-based web app. The main aim was to create a reliable, secure and easy-to-manage workflow, covering everything from source control to deployment with modern cloud tools.
+In this project, the goal was to set up a fully automated CI/CD pipeline using AWS services for a Java-based web application. The main aim was to create a reliable, secure and easy-to-manage workflow, covering everything from source control to deployment with modern cloud tools.
 
 The pipeline was built using four key AWS services:
 
