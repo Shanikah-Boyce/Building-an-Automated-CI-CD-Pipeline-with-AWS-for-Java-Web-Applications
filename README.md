@@ -29,13 +29,7 @@ mvn archetype:generate
 -DarchetypeArtifactId=maven-archetype-webapp
 -DinteractiveMode=false
 ```
-
-
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
-
-
-
-![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
 
 ### Source Control Integration
 A GitHub repository was created and linked to the EC2 instance. Git was configured for proper author attribution and history tracking. Secure access was ensured using a GitHub Personal Access Token (PAT), enabling seamless push/pull operations from the remote environment.
