@@ -1,19 +1,20 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
+![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
+## Project Overview
 This project demonstrates the development and deployment of a fully automated CI/CD pipeline using AWS services to support a Java-based web application. The primary goal was to create a scalable, secure and efficient DevOps workflow, from source control to deployment, leveraging modern cloud-native tools.
 
-## Project Overview
-The CI/CD pipeline was built around key AWS services:
+The CI/CD pipeline was built around four key AWS services:
 - AWS CodePipeline for orchestration
 - AWS CodeBuild for automated builds
 - AWS CodeDeploy for seamless deployments
 - AWS CodeArtifact for secure dependency management
 
-The application was version-controlled using GitHub, with changes automatically triggering pipeline executions and deployments to an EC2 instance provisioned via CloudFormation.
-
-![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
+Lastly, the application was version-controlled using GitHub, with changes automatically triggering pipeline executions and deployments to an EC2 instance provisioned via CloudFormation.
  
 ### Environment Setup
-The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
+The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. 
+![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
+With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
 
 To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
 
