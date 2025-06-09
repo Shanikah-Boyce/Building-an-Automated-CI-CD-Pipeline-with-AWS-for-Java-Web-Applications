@@ -1,9 +1,22 @@
-# Project Overview
-In this project, I’m building and implementing a Continuous Integration and Continuous Delivery (CI/CD) pipeline using AWS services. The process involves setting up a cloud-based web application, integrating it with a GitHub repository, managing dependencies via CodeArtifact, packaging the application with CodeBuild, deploying it through CodeDeploy, and automating the entire workflow with CodePipeline.
+# Automated CI/CD Pipeline with AWS for Java Web Application
+This project demonstrates the development and deployment of a fully automated CI/CD pipeline using AWS services to support a Java-based web application. The primary goal was to create a scalable, secure and efficient DevOps workflow, from source control to deployment, leveraging modern cloud-native tools.
+
+## Project Overview
+The CI/CD pipeline was built around key AWS services:
+- AWS CodePipeline for orchestration
+- AWS CodeBuild for automated builds
+- AWS CodeDeploy for seamless deployments
+- AWS CodeArtifact for secure dependency management
+
+The application was version-controlled using GitHub, with changes automatically triggering pipeline executions and deployments to an EC2 instance provisioned via CloudFormation.
+
 ![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
  
-## DevOps: Automating Software Delivery
-DevOps is a method that encourages teamwork between development and operations teams to enhance and accelerate software delivery through automation and consistency. A DevOps engineer oversees automated workflows, packages applications, and manages cloud systems, emphasizing CI/CD (Continuous Integration and Continuous Deployment). CI/CD simplifies development by frequently merging code, automating builds and tests, and ensuring code is always prepared for deployment, with Continuous Deployment automatically launching changes after they pass testing.
+### Environment Setup
+Development began by provisioning a remote EC2 instance with secure SSH access, including the generation of key pairs for authentication. Visual Studio Code with the Remote – SSH extension enabled remote development as if local.
+
+Java and Maven were installed on the EC2 instance to set up the foundational environment. The application was scaffolded using Maven’s archetype feature, providing a standard directory structure for code and web assets.
+![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
 ## Setting Up a Web Application Using AWS Services and VSCode.
 To start, I installed Visual Studio Code (VSCode), a lightweight yet powerful code editor that is highly customizable. VSCode’s rich ecosystem of extensions, built-in support for remote development, and seamless Git integration made it the perfect tool for managing the development of the web application, regardless of the developer's skill level.
