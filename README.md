@@ -13,11 +13,63 @@ The application was version-controlled using GitHub, with changes automatically 
 ![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
  
 ### Environment Setup
-Development began by provisioning a remote EC2 instance with secure SSH access, including the generation of key pairs for authentication. Visual Studio Code with the Remote – SSH extension enabled remote development as if local.
+The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
 
-Java and Maven were installed on the EC2 instance to set up the foundational environment. The application was scaffolded using Maven’s archetype feature, providing a standard directory structure for code and web assets.
-![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
+To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
 
+
+### Source Control Integration
+A GitHub repository was created and linked to the EC2 instance. Git was configured for proper author attribution and history tracking. Secure access was ensured using a GitHub Personal Access Token (PAT), enabling seamless push/pull operations from the remote environment.
+
+### Dependency Management with AWS CodeArtifact
+To securely manage dependencies, AWS CodeArtifact was configured with:
+- A custom domain and repository
+- Maven Central as the upstream source
+- An IAM role attached to the EC2 instance to handle authentication
+
+Once properly configured, Maven successfully pulled packages from CodeArtifact using a `settings.xml` file.
+
+### Continuous Integration with AWS CodeBuild
+AWS CodeBuild was set up to automate the build process:
+- Integrated directly with GitHub using a GitHub App connection
+- Used a `buildspec.yml` file to define environment setup, dependency resolution, compilation, and packaging
+- Output artifacts were uploaded to S3
+
+Initial builds highlighted configuration issues, which were resolved by updating IAM permissions and fixing artifact paths.
+
+
+### Automated Deployment with AWS CodeDeploy
+Infrastructure resources (EC2, VPC, networking) were defined using CloudFormation for repeatability. Deployment lifecycle was controlled with:
+- Custom scripts (install_dependencies.sh, start_server.sh, stop_server.sh)
+- An appspec.yml to coordinate execution
+
+A CodeDeploy deployment group targeted EC2 instances using tags. After deployment, the application was verified through the public DNS.
+
+### Pipeline Automation with AWS CodePipeline
+A three-stage pipeline was implemented:
+- Source: Monitored GitHub for changes
+- Build: Triggered CodeBuild for compilation and packaging
+- Deploy: Used CodeDeploy to update the EC2 instance
+
+The pipeline operated in Superseded mode, ensuring only the latest changes were processed. IAM roles were auto-generated to grant necessary permissions.
+
+To validate the end-to-end flow, a front-end change was pushed to GitHub. The pipeline automatically detected the change, built the app, deployed it, and reflected the update live without manual intervention.
+
+## Key Takeaways
+Successfully automated the entire CI/CD workflow using AWS and GitHub
+
+Emphasized security through IAM roles, key-based SSH, and secure token management
+
+Adopted infrastructure as code via CloudFormation for reproducibility
+
+Demonstrated real-time deployment of application changes with zero downtime
+
+## Future Enhancements
+Introduce automated testing within the pipeline
+
+Implement blue/green or canary deployments
+
+Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
 
