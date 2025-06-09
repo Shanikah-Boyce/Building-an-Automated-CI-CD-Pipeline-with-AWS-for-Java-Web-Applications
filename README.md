@@ -19,7 +19,11 @@ With the "Remote – SSH extension" in Visual Studio Code, remote development fe
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
 To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
+![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
+
+
+![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
 
 ### Source Control Integration
 A GitHub repository was created and linked to the EC2 instance. Git was configured for proper author attribution and history tracking. Secure access was ensured using a GitHub Personal Access Token (PAT), enabling seamless push/pull operations from the remote environment.
@@ -83,6 +87,16 @@ A three-stage pipeline was implemented:
 The pipeline operated in Superseded mode, ensuring only the latest changes were processed. IAM roles were auto-generated to grant necessary permissions.
 
 To validate the end-to-end flow, a front-end change was pushed to GitHub. The pipeline automatically detected the change, built the app, deployed it, and reflected the update live without manual intervention.
+![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
+
+
+![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
+
+
+![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
+
+
+![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
 
 ## Key Takeaways
 Successfully automated the entire CI/CD workflow using AWS and GitHub
@@ -101,29 +115,6 @@ Implement blue/green or canary deployments
 Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
 
-
-
-![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
-
-
-
-![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
-
-
-
-![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
-
-
-![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
-
-
-![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
-
-
-![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
-
-
-![image](https://github.com/user-attachments/assets/fcdaacb1-d796-4910-b6ac-e4754b801464)
 
 
 
