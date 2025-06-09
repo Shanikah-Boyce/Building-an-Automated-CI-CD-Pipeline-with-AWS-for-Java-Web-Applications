@@ -1,15 +1,16 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
 ![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
 ## Project Overview
-This project demonstrates the development and deployment of a fully automated CI/CD pipeline using AWS services to support a Java-based web application. The primary goal was to create a scalable, secure and efficient DevOps workflow, from source control to deployment, leveraging modern cloud-native tools.
+In this project, the goal was to set up a fully automated CI/CD pipeline using AWS services for a Java-based web app. The main aim was to create a reliable, secure, and easy-to-manage workflow, covering everything from source control to deployment with modern cloud tools.
 
-The CI/CD pipeline was built around four key AWS services:
-- AWS CodePipeline for orchestration
-- AWS CodeBuild for automated builds
-- AWS CodeDeploy for seamless deployments
-- AWS CodeArtifact for secure dependency management
+The pipeline was built using four key AWS services:
 
-Lastly, the application was version-controlled using GitHub, with changes automatically triggering pipeline executions and deployments to an EC2 instance provisioned via CloudFormation.
+- AWS CodePipeline to manage the process  
+- AWS CodeBuild for automatic builds  
+- AWS CodeDeploy for smooth deployments  
+- AWS CodeArtifact for safe dependency management  
+
+GitHub was used for version control, ensuring that any changes automatically triggered the pipeline, leading to deployments on an EC2 instance provisioned through CloudFormation. This made software updates faster and more efficient.
  
 ### Environment Setup
 The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. 
