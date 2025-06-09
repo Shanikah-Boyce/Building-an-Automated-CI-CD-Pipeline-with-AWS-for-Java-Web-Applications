@@ -14,8 +14,9 @@ Lastly, the application was version-controlled using GitHub, with changes automa
 ### Environment Setup
 The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. 
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
-With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
 
+With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
+![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
 
 
@@ -72,10 +73,7 @@ Implement blue/green or canary deployments
 
 Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
-![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
 
-
-![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
 
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
