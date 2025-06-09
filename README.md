@@ -37,6 +37,11 @@ Once properly configured, Maven successfully pulled packages from CodeArtifact u
 
 ![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
 
+![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
+
+
+![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
+
 ### Continuous Integration with AWS CodeBuild
 AWS CodeBuild was set up to automate the build process:
 - Integrated directly with GitHub using a GitHub App connection
@@ -45,6 +50,10 @@ AWS CodeBuild was set up to automate the build process:
 
 Initial builds highlighted configuration issues, which were resolved by updating IAM permissions and fixing artifact paths.
 
+![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
+
+
+![image](https://github.com/user-attachments/assets/a595003a-cbe0-4499-8e4d-f45036f29c2e)
 
 ### Automated Deployment with AWS CodeDeploy
 Infrastructure resources (EC2, VPC, networking) were defined using CloudFormation for repeatability. Deployment lifecycle was controlled with:
@@ -87,24 +96,6 @@ Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
 
 ![image](https://github.com/user-attachments/assets/7cc384d7-5d2d-4273-abb2-4ccd46e3f133)
-
-
-![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
-
-
-![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
-
-
-![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
-
-
-![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
-
-
-![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
-
-
-![image](https://github.com/user-attachments/assets/a595003a-cbe0-4499-8e4d-f45036f29c2e)
 
 
 ![image](https://github.com/user-attachments/assets/3fb0b249-38ca-44d1-a0e1-faecbfd9caa3)
