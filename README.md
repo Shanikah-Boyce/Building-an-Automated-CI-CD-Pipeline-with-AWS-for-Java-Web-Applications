@@ -20,7 +20,17 @@ Using the "Remote – SSH extension" in Visual Studio Code, remote development f
 
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
-To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
+To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, standardized the directory layout for code and web assets. This was achieved with the command:  
+
+```
+mvn archetype:generate
+-DgroupId=com.mycompany.app
+-DartifactId=my-app
+-DarchetypeArtifactId=maven-archetype-webapp
+-DinteractiveMode=false
+```
+
+
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
 
