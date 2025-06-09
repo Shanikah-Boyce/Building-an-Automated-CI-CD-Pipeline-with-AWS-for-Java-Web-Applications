@@ -17,6 +17,7 @@ The development process started with setting up a remote EC2 instance, ensuring 
 
 With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
+
 To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, which provided a standardized directory layout for both code and web assets.
 
 
@@ -30,6 +31,11 @@ To securely manage dependencies, AWS CodeArtifact was configured with:
 - An IAM role attached to the EC2 instance to handle authentication
 
 Once properly configured, Maven successfully pulled packages from CodeArtifact using a `settings.xml` file.
+
+![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
+
+
+![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
 
 ### Continuous Integration with AWS CodeBuild
 AWS CodeBuild was set up to automate the build process:
