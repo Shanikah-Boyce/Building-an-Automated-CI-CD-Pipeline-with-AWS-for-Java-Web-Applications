@@ -31,8 +31,21 @@ mvn archetype:generate
 ```
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
-### Source Control Integration
-A GitHub repository was created and linked to the EC2 instance. Git was configured for proper author attribution and history tracking. Secure access was ensured using a GitHub Personal Access Token (PAT), enabling seamless push/pull operations from the remote environment.
+#### Setting Up Git and GitHub on an EC2 Instance  
+
+I set up Git on the EC2 instance with:  
+
+```
+sudo apt-get update
+sudo apt-get install git
+```  
+Next, I configured Git to track commits with my identity:  
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```  
+Finally, I linked a GitHub repository for version control and collaboration, using a Personal Access Token (PAT) to securely push and pull code.  
 
 ### Dependency Management with AWS CodeArtifact
 To securely manage dependencies, AWS CodeArtifact was configured with:
