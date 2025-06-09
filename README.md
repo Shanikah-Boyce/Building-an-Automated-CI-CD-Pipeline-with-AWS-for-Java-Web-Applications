@@ -57,7 +57,7 @@ Once properly configured, Maven successfully pulled packages from CodeArtifact u
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
 #### Verifying the Connection
-After compiling, I checked the CodeArtifact repository and confirmed that Maven packages were listed, indicating a siccessful connection
+After compilation, the CodeArtifact repository was checked, confirming the presence of Maven packages and a successful integration.
 ![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
 
 ### Continuous Integration with AWS CodeBuild
