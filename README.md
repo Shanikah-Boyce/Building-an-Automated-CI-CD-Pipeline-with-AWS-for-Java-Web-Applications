@@ -63,13 +63,15 @@ After compiling, the CodeArtifact repository was checked, confirming the presenc
 ![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
 
 ### Continuous Integration with AWS CodeBuild
-AWS CodeBuild was set up to automate the build process:
-- Integrated directly with GitHub using a GitHub App connection
+AWS CodeBuild automates builds for efficiency and reliability. It connects securely to GitHub via an app, removing the need for manual credential management.  
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
-- Used a `buildspec.yml` file to define environment setup, dependency resolution, compilation, and packaging
+
+The build process follows instructions in `buildspec.yml`, covering environment setup, dependencies, and packaging.  
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
-- Output artifacts were uploaded to S3
-![image](https://github.com/user-attachments/assets/3fb0b249-38ca-44d1-a0e1-faecbfd9caa3)
+
+Build artifacts are stored in the S3 bucket `"nextwork-devops-cicd-shanikah"`, with a WAR file confirming successful execution.  
+
+CloudWatch Logs provide real-time monitoring, capturing command outputs and errors for quick troubleshooting.  
 
 ### Automated Deployment with AWS CodeDeploy
 Infrastructure resources (EC2, VPC, networking) were defined using CloudFormation for repeatability. Deployment lifecycle was controlled with:
