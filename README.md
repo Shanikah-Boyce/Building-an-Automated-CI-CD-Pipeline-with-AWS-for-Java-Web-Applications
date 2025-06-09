@@ -13,8 +13,9 @@ The pipeline was built using four essential AWS services:
 GitHub was used for version control, ensuring that any changes automatically triggered the pipeline, leading to deployments on an EC2 instance provisioned through CloudFormation. This made software updates faster and more efficient.
  
 ### Environment Setup
-The development process started with setting up a remote EC2 instance, ensuring secure SSH access by generating a key pair for authentication. 
+The development process began with configuring a remote EC2 instance and establishing secure SSH access by generating a key pair for authentication. To safeguard the private key, I adjusted its permissions using the following command, which restricts the key file to read-only access for the owner, preventing unauthorized access.
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
+
 
 With the "Remote – SSH extension" in Visual Studio Code, remote development felt as seamless as working locally.
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
