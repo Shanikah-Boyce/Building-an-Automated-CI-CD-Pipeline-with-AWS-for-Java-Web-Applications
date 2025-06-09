@@ -65,16 +65,10 @@ After compiling, the CodeArtifact repository was checked, confirming the presenc
 ### Continuous Integration with AWS CodeBuild
 AWS CodeBuild was set up to automate the build process:
 - Integrated directly with GitHub using a GitHub App connection
-- Used a `buildspec.yml` file to define environment setup, dependency resolution, compilation, and packaging
-- Output artifacts were uploaded to S3
-
-Initial builds highlighted configuration issues, which were resolved by updating IAM permissions and fixing artifact paths.
-
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
-
-
-![image](https://github.com/user-attachments/assets/a595003a-cbe0-4499-8e4d-f45036f29c2e)
-
+- Used a `buildspec.yml` file to define environment setup, dependency resolution, compilation, and packaging
+![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
+- Output artifacts were uploaded to S3
 ![image](https://github.com/user-attachments/assets/3fb0b249-38ca-44d1-a0e1-faecbfd9caa3)
 
 ### Automated Deployment with AWS CodeDeploy
