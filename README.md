@@ -95,12 +95,15 @@ The web application was deployed using the S3 URI of the build artifact stored i
 ### Pipeline Automation with AWS CodePipeline
 A three-stage AWS CodePipeline was set up to automatically handle software updates.
 The pipeline includes:
+
 Source Stage:
 - The pipeline monitors a GitHub repository for changes and automatically triggers upon detecting updates.
  ![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
+
 Build:
 - AWS CodeBuild compiles and packages the application, ensuring the latest version is ready for deployment.
 ![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
+
 Deploy:
 - AWS CodeDeploy updates the EC2 instance seamlessly, ensuring zero-downtime deployment.
 ![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
