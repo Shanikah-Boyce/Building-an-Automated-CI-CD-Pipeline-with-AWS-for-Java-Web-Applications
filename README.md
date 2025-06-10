@@ -84,15 +84,13 @@ AWS CloudFormation was used to launch an EC2 instance along with its networking 
 
 ![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
 
-An AWS CodeDeploy application named `nextwork-devops-cicd` was created for EC2/On-premises deployments, automating updates across instances. A deployment group was set up to organize EC2 instances, and an IAM role was configured to grant CodeDeploy permissions to manage resources like EC2, S3, Auto Scaling, and CloudWatch logs. To ensure deployment to the correct instance, the tag `role: webserver` was applied, and the CodeDeploy Agent on the EC2 instance listens for deployment instructions from `appspec.yml`, requiring updates every 14 days. The deployment used `CodeDeployDefault.AllAtOnce`, updating all instances simultaneously.  
+An AWS CodeDeploy application (nextwork-devops-cicd) was created to automate EC2 deployments. A deployment group was set up, and an IAM role was configured to grant CodeDeploy permissions for managing EC2, S3, Auto Scaling, and CloudWatch logs.
 
-A deployment was initiated to push the web application to the EC2 instance, with the revision location set to the S3 URI of the build artifact in the `nextwork-devops-cicd` bucket. Deployment success was confirmed by accessing the EC2 instance's Public IPv4 DNS in a browser and verifying the web application was running.
+To target the correct instance, the role: webserver tag was applied, allowing the CodeDeploy Agent to listen for deployment instructions.
 
+The web application was deployed using the S3 URI of the build artifact stored in the nextwork-devops-cicd bucket. Deployment success was verified by accessing the EC2 instance's Public IPv4 DNS in a browser.
 
-![image](https://github.com/user-attachments/assets/ef2b3d82-4963-4a6d-8e47-4a39a643f435)
-
-
-![image](https://github.com/user-attachments/assets/071187cc-745b-480a-aa42-27f1df968634)
+![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
 
 ### Pipeline Automation with AWS CodePipeline
 A three-stage pipeline was implemented:
