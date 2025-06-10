@@ -93,20 +93,23 @@ The web application was deployed using the S3 URI of the build artifact stored i
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
 
 ### Pipeline Automation with AWS CodePipeline
-![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
-
-A three-stage pipeline was implemented:
-- Source: Monitored GitHub for changes
+A three-stage AWS CodePipeline was set up to automatically handle software updates.
+The pipeline includes:
+Source Stage:
+- The pipeline monitors a GitHub repository for changes and automatically triggers upon detecting updates.
  ![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
-- Build: Triggered CodeBuild for compilation and packaging
+Build:
+- AWS CodeBuild compiles and packages the application, ensuring the latest version is ready for deployment.
 ![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
-- Deploy: Used CodeDeploy to update the EC2 instance
-
+Deploy:
+- AWS CodeDeploy updates the EC2 instance seamlessly, ensuring zero-downtime deployment.
 ![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
-The pipeline operated in Superseded mode, ensuring only the latest changes were processed. IAM roles were auto-generated to grant necessary permissions.
 
-To validate the end-to-end flow, a front-end change was pushed to GitHub. The pipeline automatically detected the change, built the app, deployed it, and reflected the update live without manual intervention.
+Operating in Superseded mode, the pipeline processes only the latest changes, preventing redundant builds. IAM roles were automatically created to provide the required permissions for each service, boosting both security and automation.
 
+To validate the end-to-end workflow, a front-end change was pushed to GitHub, triggering the pipeline to detect the update, build the application, deploy it, and reflect the changes live, without manual intervention. This automation streamlines the development workflow, reducing deployment time and minimizing human error.
+
+![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
 
 
 ## Key Takeaways
