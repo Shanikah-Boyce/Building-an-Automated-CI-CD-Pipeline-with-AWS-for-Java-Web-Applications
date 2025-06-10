@@ -85,7 +85,7 @@ The application deployed from the S3 build artifact, verified by accessing the E
 
 ### Pipeline Automation with AWS CodePipeline
 ![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
-A three-stage AWS CodePipeline was set up to automatically handle software updates. The pipeline includes:
+AWS CodePipeline helps keep software up to date automatically, improving efficiency and security.
 1) The pipeline begins with the Source Stage, which continuously monitors GitHub for changes and triggers the pipeline when updates are detected.
  ![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
 
@@ -95,26 +95,16 @@ A three-stage AWS CodePipeline was set up to automatically handle software updat
 3) Finally, the Deploy Stage utilizes AWS CodeDeploy to update the EC2 instance seamlessly. This ensures a zero-downtime deployment, allowing users to access the latest version of the software without disruptions.
 ![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
 
-The entire pipeline streamlines software delivery while enhancing efficiency, security, and reliability.
+
+## Lessons Learned and Challenges Overcome
+**
+
+## Final Deliverables and Reflection
+This project implemented a fully automated CI/CD pipeline for web application deployment on EC2. By integrating AWS CodePipeline, CodeBuild, CodeDeploy, and CodeArtifact, it ensured seamless updates with zero downtime.
+
+Through this experience, I gained deeper expertise in AWS DevOps tools, transforming manual workflows into automated pipelines that improved deployment speed and software stability. The final implementation ensured that modifying the index.jsp file in GitHub automatically triggered the pipeline, instantly delivering updates while maintaining consistent application performance.
+
 ![Screenshot 2025-05-07 164933](https://github.com/user-attachments/assets/4e4b85f0-5e4a-4c26-a744-160e209002c8)
-
-
-## Key Takeaways
-Successfully automated the entire CI/CD workflow using AWS and GitHub
-
-Emphasized security through IAM roles, key-based SSH, and secure token management
-
-Adopted infrastructure as code via CloudFormation for reproducibility
-
-Demonstrated real-time deployment of application changes with zero downtime
-
-## Future Enhancements
-Introduce automated testing within the pipeline
-
-Implement blue/green or canary deployments
-
-Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
-
 
 ##### Network Student
 ##### Nextwork.org 
