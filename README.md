@@ -93,6 +93,7 @@ The web application was deployed using the S3 URI of the build artifact stored i
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
 
 ### Pipeline Automation with AWS CodePipeline
+![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
 A three-stage AWS CodePipeline was set up to automatically handle software updates.
 The pipeline includes:
 
@@ -112,7 +113,7 @@ Operating in Superseded mode, the pipeline processes only the latest changes, pr
 
 To validate the end-to-end workflow, a front-end change was pushed to GitHub, triggering the pipeline to detect the update, build the application, deploy it, and reflect the changes live, without manual intervention. This automation streamlines the development workflow, reducing deployment time and minimizing human error.
 
-![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
+![Screenshot 2025-05-07 164933](https://github.com/user-attachments/assets/4e4b85f0-5e4a-4c26-a744-160e209002c8)
 
 
 ## Key Takeaways
