@@ -19,8 +19,7 @@ Using Visual Studio Code's Remote – SSH extension, I connected seamlessly to t
 
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
-To establish the core environment, Java and Maven were installed on the EC2 instance. Java and Maven were installed on the EC2 instance. The application’s framework was structured using Maven’s archetype feature to standardize the directory layout: 
-
+To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was structured using Maven’s archetype feature to standardize the directory layout: 
 ```
 mvn archetype:generate
 -DgroupId=com.mycompany.app
@@ -31,29 +30,26 @@ mvn archetype:generate
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
 #### Setting Up Git and GitHub on an EC2 Instance  
-Git was installed on the EC2 instance using:  
+Git was installed and configured on the EC2 instance:  
 ```
 sudo apt-get update
 sudo apt-get install git
-```  
-Next, Git was configured to track commits by setting the user identity:  
-```
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```  
-Finally, a GitHub repository was linked to the EC2 instance for version control and collaboration, with a Personal Access Token (PAT) ensuring secure push and pull operations.  
+A GitHub repository was linked using a Personal Access Token (PAT) for secure push and pull operations. This enabled automatic source control integration to trigger pipeline execution on code changes. 
 
-### Secure Packages with AWS CodeArtifact
-To securely manage project dependencies, AWS CodeArtifact was configured with the following setup:
+### Secure Dependency Management with AWS CodeArtifact
+To securely manage project dependencies, AWS CodeArtifact was configured with the following:
 
 - A custom domain and repository for organizing and isolating packages
-- Maven Central set as the upstream source
+- Maven Central designated as the upstream source
 ![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
 
-- An IAM role attached to the EC2 instance to handle secure authentication
+- An IAM role assigned to the EC2 instance for secure authentication
 ![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
 
-Once configured, Maven successfully retrieved packages from CodeArtifact using a `settings.xml` file tailored for authentication and repository access.
+Once everything was configured, Maven successfully pulled packages from CodeArtifact using a `settings.xml` file designed for authentication and access.
 
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
