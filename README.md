@@ -77,35 +77,25 @@ Using CloudFormation, I provisioned an EC2 instance with networking resources. T
 
 ![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
 
-An AWS CodeDeploy application (nextwork-devops-cicd) was created to automate EC2 deployments. A deployment group was set up, and an IAM role was configured to grant CodeDeploy permissions for managing EC2, S3, Auto Scaling, and CloudWatch logs.
+An AWS CodeDeploy application and deployment group were created, with IAM roles granting necessary permissions. The EC2 instance was tagged webserver for targeted deployment.
 
-To target the correct instance, the role: webserver tag was applied, allowing the CodeDeploy Agent to listen for deployment instructions.
-
-The web application was deployed using the S3 URI of the build artifact stored in the nextwork-devops-cicd bucket. Deployment success was verified by accessing the EC2 instance's Public IPv4 DNS in a browser.
+The application deployed from the S3 build artifact, verified by accessing the EC2 instance’s Public IPv4 DNS.
 
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
 
 ### Pipeline Automation with AWS CodePipeline
 ![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
-A three-stage AWS CodePipeline was set up to automatically handle software updates.
-The pipeline includes:
-
-Source Stage:
-- The pipeline monitors a GitHub repository for changes and automatically triggers upon detecting updates.
+A three-stage AWS CodePipeline was set up to automatically handle software updates. The pipeline includes:
+1) The pipeline begins with the Source Stage, which continuously monitors GitHub for changes and triggers the pipeline when updates are detected.
  ![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
 
-Build:
-- AWS CodeBuild compiles and packages the application, ensuring the latest version is ready for deployment.
+2) Next, the Build Stage uses AWS CodeBuild to compile and package the application, ensuring the latest version is deployment-ready. Operating in Superseded mode, the pipeline processes only the most recent changes, preventing redundant builds and optimizing resource usage. IAM roles are automatically generated to grant necessary permissions for each service, improving both security and automation.
 ![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
 
-Deploy:
-- AWS CodeDeploy updates the EC2 instance seamlessly, ensuring zero-downtime deployment.
+3) Finally, the Deploy Stage utilizes AWS CodeDeploy to update the EC2 instance seamlessly. This ensures a zero-downtime deployment, allowing users to access the latest version of the software without disruptions.
 ![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
 
-Operating in Superseded mode, the pipeline processes only the latest changes, preventing redundant builds. IAM roles were automatically created to provide the required permissions for each service, boosting both security and automation.
-
-To validate the end-to-end workflow, a front-end change to the index.jsp file was pushed to GitHub, triggering the pipeline to detect the update, build the application, deploy it and reflect the changes live, without manual intervention. This automation streamlines the development workflow, reducing deployment time and minimizing human error.
-
+The entire pipeline streamlines software delivery while enhancing efficiency, security, and reliability.
 ![Screenshot 2025-05-07 164933](https://github.com/user-attachments/assets/4e4b85f0-5e4a-4c26-a744-160e209002c8)
 
 
