@@ -58,16 +58,18 @@ After compiling, the CodeArtifact repository was checked, confirming the presenc
 ![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
 
 ### Continuous Integration with AWS CodeBuild
-AWS CodeBuild simplifies and enhances the reliability of builds. In this project, it securely integrates with GitHub via an app, eliminating the need for manual credential management.
+AWS CodeBuild was integrated with GitHub via an app, removing the need for manual credential management.
 
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
 
-The build process is guided by `buildspec.yml`, which defines the setup, tool installation, and code packaging.
+The build was driven by `buildspec.yml`, which outlines the setup, tool installation, and code packaging.
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-Once the build completes, the final files are stored in the S3 bucket `"nextwork-devops-cicd-shanikah"`, with the presence of a WAR file indicating a successful build.
+Upon completion, the final files are stored in the S3 bucket "nextwork-devops-cicd-shanikah", with the presence of a WAR file confirming a successful build.
 
-CloudWatch Logs provide real-time visibility into the process, displaying outputs and errors to facilitate quick troubleshooting.  
+Real-time visibility into the process is provided by CloudWatch Logs, which display outputs and errors to facilitate quick troubleshooting.
+
+This automated pipeline ensures consistent builds, minimizes manual intervention, and enhances the feedback loop for developers.
 
 ### Automated Deployment with AWS CodeDeploy  
 AWS CloudFormation was used to launch an EC2 instance along with its networking resources (VPC, Subnet, Route Tables, Internet Gateway, Security Group). To automate the setup, several deployment scripts were created in VSCode:
