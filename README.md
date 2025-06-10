@@ -1,26 +1,25 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
 ![image](https://github.com/user-attachments/assets/5ad24dfe-b2c7-4063-8994-ce73112a309f)
 ## Project Overview
-In this project, the goal was to set up a fully automated CI/CD pipeline using AWS services for a Java-based web application. The primary goal was to create a reliable, secure and easy-to-manage workflow, covering everything from source control to deployment with modern cloud tools.
+The goal was to set up a fully automated CI/CD pipeline using AWS services for a Java-based web application. This project addresses the challenges of manual deployment, which is often slow and error-prone, by creating a reliable, secure, and easy-to-manage workflow covering source control to deployment with modern cloud tools.
 
-The pipeline was built using four essential AWS services:
+The pipeline leverages four key AWS services:
+- AWS CodePipeline to orchestrate the process
+- AWS CodeBuild for automated builds
+- AWS CodeDeploy for reliable deployments
+- AWS CodeArtifact for secure dependency management
 
-- AWS CodePipeline to orchestrate the entire process 
-- AWS CodeBuild for efficient and automated builds  
-- AWS CodeDeploy for smooth and reliable deployments
-- AWS CodeArtifact for secure managemnt of dependencies 
-
-GitHub was used for version control, ensuring that any changes automatically triggered the pipeline, leading to deployments on an EC2 instance provisioned through CloudFormation. This made software updates faster and more efficient.
+GitHub handles version control, triggering the pipeline on code changes, leading to deployments on an EC2 instance provisioned via CloudFormation. This integration accelerates deployment frequency, reduces human errors, and improves traceability.
  
 ### Environment Setup
-The development process started by configuring a remote EC2 instance and setting up secure SSH access with a key pair. I secured the private key by setting its permissions to read-only for the owner, preventing unauthorized access.
+I began by configuring a remote EC2 instance with secure SSH access, restricting the private key permissions to prevent unauthorized use. 
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
-
-Using the "Remote – SSH extension" in Visual Studio Code, remote development felt seamless. Once the key pair was ready, I connected to the EC2 instance with `ssh -i "shanikah-keypair.pem" ec2-user@44.202.28.117`, enabling interaction via its public IPv4 DNS address.
+Using Visual Studio Code's Remote – SSH extension, I connected seamlessly to the instance:
+`ssh -i "shanikah-keypair.pem" ec2-user@44.202.28.117`
 
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
-To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was then structured using Maven’s archetype feature, standardized the directory layout for code and web assets. This was achieved with the command:  
+To establish the core environment, Java and Maven were installed on the EC2 instance. Java and Maven were installed on the EC2 instance. The application’s framework was structured using Maven’s archetype feature to standardize the directory layout: 
 
 ```
 mvn archetype:generate
