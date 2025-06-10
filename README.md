@@ -65,15 +65,15 @@ AWS CodeBuild was integrated with GitHub via an app, removing the need for manua
 The build was driven by `buildspec.yml`, which outlines the setup, tool installation, and code packaging.
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-Upon completion, the final files are stored in the S3 bucket "nextwork-devops-cicd-shanikah", with the presence of a WAR file confirming a successful build. Real-time visibility into the process is provided by CloudWatch Logs, which display outputs and errors to facilitate quick troubleshooting.
+Upon completion, the final files are securely stored in the S3 bucket "nextwork-devops-cicd-shanikah," with the presence of a WAR file confirming a successful build. CloudWatch Logs provide real-time visibility, displaying outputs and errors to streamline troubleshooting.
 
 ### Automated Deployment with AWS CodeDeploy  
-AWS CloudFormation was used to launch an EC2 instance along with its networking resources (VPC, Subnet, Route Tables, Internet Gateway, Security Group). To automate the setup, several deployment scripts were created in VSCode:
-- install_dependencies.sh – Installs Tomcat and Apache, configuring Apache as a reverse proxy.
-- start_server.sh – Ensures both services start automatically and restart on reboot.
-- stop_server.sh – Safely stops services to prevent deployment errors.
-- appspec.yml – Defines AWS CodeDeploy deployment steps, including file mappings and lifecycle hooks.
-- buildspec.yml – Packages deployment files into the build artifact for CodeDeploy.
+Using CloudFormation, I provisioned an EC2 instance with networking resources. To automate the setup, several deployment scripts were created in VSCode:
+- `install_dependencies.sh` installs Tomcat and Apache (configuring Apache as a reverse proxy).
+- `start_server.sh`ensures both services start automatically and restart on reboot.
+- `stop_server.sh` safely stops services to prevent deployment errors.
+- `appspec.yml` defines AWS CodeDeploy deployment steps, including file mappings and lifecycle hooks.
+- `buildspec.yml` packages deployment files for CodeDeploy.
 
 ![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
 
