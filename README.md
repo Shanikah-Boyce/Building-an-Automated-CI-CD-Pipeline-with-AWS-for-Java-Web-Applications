@@ -64,6 +64,7 @@ After compiling, the CodeArtifact repository was checked, confirming the presenc
 
 ### Continuous Integration with AWS CodeBuild
 AWS CodeBuild simplifies and enhances the reliability of builds. In this project, it securely integrates with GitHub via an app, eliminating the need for manual credential management.
+
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
 
 The build process is guided by `buildspec.yml`, which defines the setup, tool installation, and code packaging.
@@ -73,16 +74,19 @@ Once the build completes, the final files are stored in the S3 bucket `"nextwork
 
 CloudWatch Logs provide real-time visibility into the process, displaying outputs and errors to facilitate quick troubleshooting.  
 
-### Automated Deployment with AWS CodeDeploy
-Infrastructure resources (EC2, VPC, networking) were defined using CloudFormation for repeatability. Deployment lifecycle was controlled with:
-- Custom scripts (install_dependencies.sh, start_server.sh, stop_server.sh)
-- An appspec.yml to coordinate execution
-
-A CodeDeploy deployment group targeted EC2 instances using tags. After deployment, the application was verified through the public DNS.
-![image](https://github.com/user-attachments/assets/7c8da34c-ba9d-43c6-8993-29ad65bd2df6)
-
+### Automated Deployment with AWS CodeDeploy  
+AWS CloudFormation was used to launch an EC2 instance along with its networking resources (VPC, Subnet, Route Tables, Internet Gateway, Security Group). To automate the setup, several deployment scripts were created in VSCode:
+- install_dependencies.sh – Installs Tomcat and Apache, configuring Apache as a reverse proxy.
+- start_server.sh – Ensures both services start automatically and restart on reboot.
+- stop_server.sh – Safely stops services to prevent deployment errors.
+- appspec.yml – Defines AWS CodeDeploy deployment steps, including file mappings and lifecycle hooks.
+- buildspec.yml – Packages deployment files into the build artifact for CodeDeploy.
 
 ![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
+
+An AWS CodeDeploy application named `nextwork-devops-cicd` was created for EC2/On-premises deployments, automating updates across instances. A deployment group was set up to organize EC2 instances, and an IAM role was configured to grant CodeDeploy permissions to manage resources like EC2, S3, Auto Scaling, and CloudWatch logs. To ensure deployment to the correct instance, the tag `role: webserver` was applied, and the CodeDeploy Agent on the EC2 instance listens for deployment instructions from `appspec.yml`, requiring updates every 14 days. The deployment used `CodeDeployDefault.AllAtOnce`, updating all instances simultaneously.  
+
+A deployment was initiated to push the web application to the EC2 instance, with the revision location set to the S3 URI of the build artifact in the `nextwork-devops-cicd` bucket. Deployment success was confirmed by accessing the EC2 instance's Public IPv4 DNS in a browser and verifying the web application was running.
 
 
 ![image](https://github.com/user-attachments/assets/ef2b3d82-4963-4a6d-8e47-4a39a643f435)
