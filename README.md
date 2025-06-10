@@ -65,11 +65,7 @@ AWS CodeBuild was integrated with GitHub via an app, removing the need for manua
 The build was driven by `buildspec.yml`, which outlines the setup, tool installation, and code packaging.
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-Upon completion, the final files are stored in the S3 bucket "nextwork-devops-cicd-shanikah", with the presence of a WAR file confirming a successful build.
-
-Real-time visibility into the process is provided by CloudWatch Logs, which display outputs and errors to facilitate quick troubleshooting.
-
-This automated pipeline ensures consistent builds, minimizes manual intervention, and enhances the feedback loop for developers.
+Upon completion, the final files are stored in the S3 bucket "nextwork-devops-cicd-shanikah", with the presence of a WAR file confirming a successful build. Real-time visibility into the process is provided by CloudWatch Logs, which display outputs and errors to facilitate quick troubleshooting.
 
 ### Automated Deployment with AWS CodeDeploy  
 AWS CloudFormation was used to launch an EC2 instance along with its networking resources (VPC, Subnet, Route Tables, Internet Gateway, Security Group). To automate the setup, several deployment scripts were created in VSCode:
