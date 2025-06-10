@@ -111,7 +111,7 @@ Deploy:
 
 Operating in Superseded mode, the pipeline processes only the latest changes, preventing redundant builds. IAM roles were automatically created to provide the required permissions for each service, boosting both security and automation.
 
-To validate the end-to-end workflow, a front-end change was pushed to GitHub, triggering the pipeline to detect the update, build the application, deploy it, and reflect the changes live, without manual intervention. This automation streamlines the development workflow, reducing deployment time and minimizing human error.
+To validate the end-to-end workflow, a front-end change to the index.jsp file was pushed to GitHub, triggering the pipeline to detect the update, build the application, deploy it and reflect the changes live, without manual intervention. This automation streamlines the development workflow, reducing deployment time and minimizing human error.
 
 ![Screenshot 2025-05-07 164933](https://github.com/user-attachments/assets/4e4b85f0-5e4a-4c26-a744-160e209002c8)
 
@@ -133,6 +133,9 @@ Implement blue/green or canary deployments
 Add monitoring, alerting, and logging enhancements with CloudWatch and SNS
 
 
+##### Network Student
+##### Nextwork.org 
+![image](https://github.com/user-attachments/assets/fece45c6-e4de-44ba-96aa-b74fde4173a6)
 
 
 
