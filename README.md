@@ -51,25 +51,22 @@ Upon successful completion, output artifacts—including a WAR file—were secur
 By leveraging CodeBuild’s native integration with AWS services and customizing the environment, the pipeline was fully automated. The result was a secure, reliable, and efficient CI/CD system that accelerated deployment timelines, reduced manual overhead, and ensured consistent, production-ready builds.
 
 ### Automated Build & Deployment Pipeline with AWS CodeBuild, CodeDeploy and CloudFormation
+Deployment automation was finalized using AWS CodeDeploy, completing the CI/CD pipeline initiated with CodeBuild. Once builds were successfully executed, packaged artifacts—including application files and lifecycle scripts—were stored in Amazon S3 and retrieved during deployment. This ensured a consistent and reliable handoff between build and deployment stages.
 
-To establish a fully automated CI/CD pipeline, infrastructure was provisioned using AWS CloudFormation, including an EC2 instance and its associated networking resources. Deployment automation was achieved through a combination of AWS CodeBuild and AWS CodeDeploy, with supporting scripts and configuration files developed in Visual Studio Code.
+Deployment orchestration was governed by the appspec.yml file, which mapped files and defined lifecycle hooks for phased operations such as install, start, and stop. These phases were supported by custom shell scripts: `install_dependencies.sh` installed Apache and Tomcat, with Apache configured as a reverse proxy; `start_server.sh` ensured services launched automatically and restarted on reboot; and `stop_server.sh` safely halted services to prevent deployment conflicts.
 
-Several shell scripts were created to automate server setup and lifecycle management:
-- install_dependencies.sh- installed Apache and Tomcat, configuring Apache as a reverse proxy.
-- start_server.sh- ensured both services started automatically and restarted on reboot.
-- stop_server.sh- safely stopped services to prevent deployment conflicts.
+To enable targeted and scalable deployments, an AWS CodeDeploy application and deployment group were configured with appropriate IAM roles. EC2 instances were tagged with `role=webserver`, allowing new instances with matching tags to be automatically included in future deployments. The CodeDeploy agent was installed on each EC2 instance and kept up to date via AWS Systems Manager, ensuring long-term reliability and reducing maintenance overhead.
 
-Deployment orchestration was defined in appspec.yml, which mapped files and specified lifecycle hooks for CodeDeploy. 
+Deployment success was verified through the EC2 instance’s Public IPv4 DNS, confirming that all components were correctly installed and operational. CodeDeploy’s integration with EC2 and support for lifecycle hooks enabled controlled, phased rollouts that minimized risk and improved deployment confidence.
+
+An early deployment failure caused by outdated scripts underscored the importance of aligning build and deployment artifacts. This experience reinforced the need for end-to-end validation across the pipeline to maintain integrity, reduce errors, and ensure consistent, production-ready deployments.
+
+
 [image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
 
-The buildspec.yml file packaged all necessary deployment assets, including lifecycle scripts, into a build artifact for CodeDeploy.
+
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-An AWS CodeDeploy application and deployment group were configured, with IAM roles granting the required permissions. The EC2 instance was tagged with role=webserver, enabling targeted deployments and seamless scalability, new instances with matching tags automatically became deployment targets.
-
-The CodeDeploy agent was installed and configured on the EC2 instance, with automatic updates managed via AWS Systems Manager to ensure long-term reliability. Deployment artifacts were stored in S3 and pulled during deployment, with successful verification via the EC2 instance’s Public IPv4 DNS.
-
-CodeDeploy was selected for its tight integration with EC2 and support for lifecycle hooks, which allowed deployments to be orchestrated in phases—install, start, stop—ensuring smooth rollouts. An early deployment failure due to outdated scripts underscored the importance of aligning build and deployment artifacts, reinforcing the value of end-to-end validation in automated pipelines.  
 
 
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
