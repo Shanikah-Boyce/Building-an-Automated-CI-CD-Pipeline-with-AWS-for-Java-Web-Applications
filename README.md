@@ -53,7 +53,10 @@ By leveraging CodeBuild’s native integration with AWS services and customizing
 ### Automated Build & Deployment Pipeline with AWS CodeBuild, CodeDeploy and CloudFormation
 To complete the CI/CD pipeline, deployment automation was implemented using AWS CodeDeploy. After successful builds in CodeBuild, the resulting artifacts—including application files and lifecycle scripts—were stored in Amazon S3. These artifacts were then retrieved during deployment, ensuring a consistent and reliable transition from build to release.
 
-Deployment orchestration was defined in the `appspec.yml` file, which mapped files and specified lifecycle hooks for phased operations such as install, start, and stop. These phases were supported by custom shell scripts: `install_dependencies.sh` installed Apache and Tomcat, with Apache configured as a reverse proxy to Tomcat; `start_server.sh` ensured services launched automatically and restarted on reboot; and `stop_server.sh` safely halted services to prevent deployment conflicts.
+Deployment orchestration was defined in the `appspec.yml` file, which mapped files and specified lifecycle hooks for phased operations such as install, start, and stop. These phases were supported by custom shell scripts: 
+- `install_dependencies.sh` installed Apache and Tomcat, with Apache configured as a reverse proxy to Tomcat
+- `start_server.sh` ensured services launched automatically and restarted on reboot
+- `stop_server.sh` safely halted services to prevent deployment conflicts
 
 To enable targeted and scalable deployments, an AWS CodeDeploy application and deployment group were configured with appropriate IAM roles. EC2 instances were tagged with `role=webserver`, allowing CodeDeploy to automatically include any new instances with matching tags. The CodeDeploy agent was installed on each EC2 instance and managed via AWS Systems Manager, ensuring long-term reliability and reducing operational overhead.
 
