@@ -12,20 +12,11 @@ The pipeline leverages four key AWS services:
 GitHub handles version control, triggering the pipeline on code changes, leading to deployments on an EC2 instance provisioned via CloudFormation. This integration accelerates deployment frequency, reduces human errors, and improves traceability.
  
 ### Remote Development Environment on EC2
-To establish a secure and efficient development environment, I provisioned an Amazon EC2 instance as a remote development server. SSH access was tightly controlled using EC2 key pairs, ensuring that only authorized users could connect.  
+To establish a secure and efficient development environment, I provisioned an Amazon EC2 instance as a remote development server. SSH access was tightly controlled using an EC2 key pair, ensuring that only authorized users (the owner) could connet.  
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
-To streamline development workflows, I leveraged Visual Studio Code’s Remote – SSH extension, enabling seamless in-editor access to the remote environment—eliminating the need for manual file transfers or external SSH clients.
+To streamline development workflows, I leveraged Visual Studio Code’s Remote – SSH extension, enabling seamless in-editor access to the remote environment, eliminating the need for manual file transfers or external SSH clients.
 
-![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
-
-To establish the core environment, Java and Maven were installed on the EC2 instance. The application’s framework was structured using Maven’s archetype feature to standardize the directory layout: 
-```
-mvn archetype:generate
--DgroupId=com.mycompany.app
--DartifactId=my-app
--DarchetypeArtifactId=maven-archetype-webapp
--DinteractiveMode=false
-```
+The environment was configured with Amazon Corretto 8 and Apache Maven to meet the project’s Java runtime requirements. I initialized the project using Maven’s archetype system, promoting a standardized and modular codebase structure. Version control was set up with Git, securely connected to GitHub via a Personal Access Token (PAT), laying the groundwork for smooth integration into a CI/CD pipeline.
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
 #### Setting Up Git and GitHub on an EC2 Instance  
