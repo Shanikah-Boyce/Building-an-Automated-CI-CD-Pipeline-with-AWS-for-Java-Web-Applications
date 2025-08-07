@@ -11,11 +11,10 @@ The pipeline leverages four key AWS services:
 
 GitHub handles version control, triggering the pipeline on code changes, leading to deployments on an EC2 instance provisioned via CloudFormation. This integration accelerates deployment frequency, reduces human errors, and improves traceability.
  
-### Environment Setup
-I began by configuring a remote EC2 instance with secure SSH access, restricting the private key permissions to prevent unauthorized use. 
+### Remote Development Environment on EC2
+To establish a secure and efficient development environment, I provisioned an Amazon EC2 instance as a remote development server. SSH access was tightly controlled using EC2 key pairs, ensuring that only authorized users could connect.  
 ![image](https://github.com/user-attachments/assets/e2106c4e-0e46-46d4-8682-7ece63271389)
-Using Visual Studio Code's Remote – SSH extension, I connected seamlessly to the instance:
-`ssh -i "shanikah-keypair.pem" ec2-user@44.202.28.117`
+To streamline development workflows, I leveraged Visual Studio Code’s Remote – SSH extension, enabling seamless in-editor access to the remote environment—eliminating the need for manual file transfers or external SSH clients.
 
 ![image](https://github.com/user-attachments/assets/4ff35c90-5381-4851-8293-dd4ca76d2f61)
 
