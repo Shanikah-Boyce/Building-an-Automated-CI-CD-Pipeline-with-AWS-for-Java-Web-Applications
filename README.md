@@ -40,14 +40,17 @@ Once configured, Maven successfully pulled dependencies from CodeArtifact during
 This setup provided a secure, automated, and reproducible dependency pipeline aligned with enterprise DevOps standards.
 
 ### Continuous Integration with AWS CodeBuild
-AWS CodeBuild was integrated with GitHub via an app, removing the need for manual credential management.
+To optimize the build and deployment process, AWS CodeBuild was integrated with GitHub using the official GitHub app. This setup eliminated manual credential management and enhanced security by avoiding personal access tokens and SSH keys. With GitHub serving as the source provider, builds were automatically triggered on code changes, enabling a smooth and efficient CI/CD pipeline.
 
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
 
-The build was driven by `buildspec.yml`, which outlines the setup, tool installation, and code packaging.
+The build process was defined through a structured buildspec.yml file, outlining each phase of the lifecycle. An AWS-managed Corretto 8 image was selected for the build environment to ensure compatibility with the production runtime and maintain consistency across environments. During execution, secure authentication tokens were retrieved for AWS CodeArtifact, followed by Maven dependency resolution, compilation, and packaging.
+
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-Upon completion, the final files are securely stored in the S3 bucket "nextwork-devops-cicd-shanikah," with the presence of a WAR file confirming a successful build. CloudWatch Logs provide real-time visibility, displaying outputs and errors to streamline troubleshooting.
+Upon successful completion, output artifacts—including a WAR file—were securely stored in the S3 bucket nextwork-devops-cicd-shanikah. These files were zipped and prepared for deployment. CloudWatch Logs were enabled to provide real-time visibility into the build process, allowing for rapid issue detection and resolution.
+
+By leveraging CodeBuild’s native integration with AWS services and customizing the environment, the pipeline was fully automated. The result was a secure, reliable, and efficient CI/CD system that accelerated deployment timelines, reduced manual overhead, and ensured consistent, production-ready builds.
 
 ### Automated Deployment with AWS CodeDeploy  
 Using CloudFormation, I provisioned an EC2 instance with networking resources. To automate the setup, several deployment scripts were created in VSCode:
