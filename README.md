@@ -62,10 +62,8 @@ To enable targeted and scalable deployments, an AWS CodeDeploy application and d
 
 Deployment success was verified through the EC2 instance’s Public IPv4 DNS, confirming that all components were correctly installed and functioning as expected. CodeDeploy’s tight integration with EC2 and support for lifecycle hooks enabled controlled, phased rollouts that minimized risk and improved deployment confidence.
 
-An early deployment failure caused by outdated scripts highlighted the importance of maintaining alignment between build and deployment artifacts. This experience reinforced the need for thorough, end-to-end validation across the pipeline to ensure consistent, production-ready deployments and reduce the likelihood of runtime errors.
 
-
-[image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
+![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
 
 
 ![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
@@ -100,9 +98,7 @@ Through this experience, I gained deeper expertise in AWS DevOps tools, transfor
 
 ![Screenshot 2025-05-07 164933](https://github.com/user-attachments/assets/4e4b85f0-5e4a-4c26-a744-160e209002c8)
 
-##### Network Student
-##### Nextwork.org 
-![image](https://github.com/user-attachments/assets/fece45c6-e4de-44ba-96aa-b74fde4173a6)
+## lesson
 
-
+An early deployment failure caused by outdated scripts highlighted the importance of maintaining alignment between build and deployment artifacts. This experience reinforced the need for thorough, end-to-end validation across the pipeline to ensure consistent, production-ready deployments and reduce the likelihood of runtime errors.
 
