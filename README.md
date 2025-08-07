@@ -46,8 +46,6 @@ To optimize the build and deployment process, AWS CodeBuild was integrated with 
 
 The build process was defined through a structured buildspec.yml file, outlining each phase of the lifecycle. An AWS-managed Corretto 8 image was selected for the build environment to ensure compatibility with the production runtime and maintain consistency across environments. During execution, secure authentication tokens were retrieved for AWS CodeArtifact, followed by Maven dependency resolution, compilation, and packaging.
 
-![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
-
 Upon successful completion, output artifacts—including a WAR file—were securely stored in the S3 bucket nextwork-devops-cicd-shanikah. These files were zipped and prepared for deployment. CloudWatch Logs were enabled to provide real-time visibility into the build process, allowing for rapid issue detection and resolution.
 
 By leveraging CodeBuild’s native integration with AWS services and customizing the environment, the pipeline was fully automated. The result was a secure, reliable, and efficient CI/CD system that accelerated deployment timelines, reduced manual overhead, and ensured consistent, production-ready builds.
@@ -61,17 +59,17 @@ Several shell scripts were created to automate server setup and lifecycle manage
 - start_server.sh- ensured both services started automatically and restarted on reboot.
 - stop_server.sh- safely stopped services to prevent deployment conflicts.
 
-Deployment orchestration was defined in appspec.yml, which mapped files and specified lifecycle hooks for CodeDeploy. The buildspec.yml file packaged all necessary deployment assets, including lifecycle scripts, into a build artifact for CodeDeploy.
+Deployment orchestration was defined in appspec.yml, which mapped files and specified lifecycle hooks for CodeDeploy. 
+[image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
+
+The buildspec.yml file packaged all necessary deployment assets, including lifecycle scripts, into a build artifact for CodeDeploy.
+![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
 An AWS CodeDeploy application and deployment group were configured, with IAM roles granting the required permissions. The EC2 instance was tagged with role=webserver, enabling targeted deployments and seamless scalability, new instances with matching tags automatically became deployment targets.
 
 The CodeDeploy agent was installed and configured on the EC2 instance, with automatic updates managed via AWS Systems Manager to ensure long-term reliability. Deployment artifacts were stored in S3 and pulled during deployment, with successful verification via the EC2 instance’s Public IPv4 DNS.
 
 CodeDeploy was selected for its tight integration with EC2 and support for lifecycle hooks, which allowed deployments to be orchestrated in phases—install, start, stop—ensuring smooth rollouts. An early deployment failure due to outdated scripts underscored the importance of aligning build and deployment artifacts, reinforcing the value of end-to-end validation in automated pipelines.  
-
-
-![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
-
 
 
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
