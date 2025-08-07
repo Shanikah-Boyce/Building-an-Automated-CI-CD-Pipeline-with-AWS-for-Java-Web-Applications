@@ -72,18 +72,23 @@ Deployment success was verified through the EC2 instance’s Public IPv4 DNS, co
 
 CodeDeploy’s tight integration with EC2 and support for lifecycle hooks enabled controlled, phased rollouts that minimized risk and improved deployment confidence.
 
-///
-
 ### Pipeline Automation with AWS CodePipeline
+AWS CodePipeline was configured to automate the entire CI/CD process by integrating GitHub, AWS CodeBuild, and AWS CodeDeploy into a cohesive workflow. The pipeline continuously monitors the master branch in GitHub using webhook triggers, enabling near real-time execution whenever new code is pushed. This ensures that updates are automatically built, tested, and deployed with minimal manual intervention.
+
+Upon detecting a change, the pipeline begins with the Source stage, retrieving the latest code from GitHub. It then moves to the Build stage, where AWS CodeBuild compiles and packages the application. Operating in Superseded mode, the pipeline processes only the most recent revision, avoiding redundant builds and conserving resources. IAM roles are automatically provisioned to grant secure, scoped permissions to each service, reinforcing both automation and security.
+
+In the final stage, AWS CodeDeploy deploys the application to EC2 instances with zero downtime, ensuring uninterrupted access for users. If a deployment fails, CodeDeploy automatically initiates a rollback to the last known stable version, preserving production integrity.
+
+A minor code change was used to validate the pipeline’s responsiveness and correctness. The successful execution confirmed the reliability of the setup and the effectiveness of the CI/CD strategy. By automating software delivery and enforcing best practices, AWS CodePipeline improves development efficiency, reduces operational overhead, and enhances security across the application lifecycle.
+
 ![image](https://github.com/user-attachments/assets/9bae94d5-c77e-42f8-a0ed-cef6bd259d32)
-AWS CodePipeline helps keep software up to date automatically, improving efficiency and security.
-1) The pipeline begins with the Source Stage, which continuously monitors GitHub for changes and triggers the pipeline when updates are detected.
+
  ![image](https://github.com/user-attachments/assets/66dbea8f-0da0-4d12-b4ff-38e627c97e45)
 
-2) Next, the Build Stage uses AWS CodeBuild to compile and package the application, ensuring the latest version is deployment-ready. Operating in Superseded mode, the pipeline processes only the most recent changes, preventing redundant builds and optimizing resource usage. IAM roles are automatically generated to grant necessary permissions for each service, improving both security and automation.
+
 ![image](https://github.com/user-attachments/assets/a29c887e-4e74-4052-ac88-c6c0a851c3c6)
 
-3) Finally, the Deploy Stage utilizes AWS CodeDeploy to update the EC2 instance seamlessly. This ensures a zero-downtime deployment, allowing users to access the latest version of the software without disruptions.
+
 ![image](https://github.com/user-attachments/assets/b18346a7-4947-4f42-b069-750bf73f83de)
 
 
