@@ -23,16 +23,16 @@ The environment was configured with Amazon Corretto 8 and Apache Maven to meet t
 Version control was set up with Git, securely connected to GitHub via a Personal Access Token (PAT), laying the groundwork for smooth integration into a CI/CD pipeline.
 
 ### Secure Dependency Management with AWS CodeArtifact
-To securely manage project dependencies, AWS CodeArtifact was configured with the following:
+To enforce secure and consistent dependency management, AWS CodeArtifact was configured as the central Maven repository for Java builds. This eliminated environment-specific issues by ensuring all dependencies were resolved from a single, controlled source.
 
-- A custom domain and repository for organizing and isolating packages
-- Maven Central designated as the upstream source
+A domain (nextwork) and repository (nextwork-devops-cicd) were created in CodeArtifact, with Maven Central set as the upstream. This enabled access to public packages while applying internal controls such as artifact caching, version enforcement, and isolation from unverified sources.
+
 ![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
 
-- An IAM role assigned to the EC2 instance for secure authentication
+Authentication was handled via an IAM role attached to the EC2 build instance. Using AWS STS, the role generated temporary tokens that were injected into Maven’s settings.xml and environment variables at runtime—eliminating static credentials and reducing the attack surface.
 ![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
 
-Once everything was configured, Maven successfully pulled packages from CodeArtifact using a `settings.xml` file designed for authentication and access.
+Once configured, Maven successfully pulled dependencies from CodeArtifact during the build process. Post-build verification confirmed that the expected packages were stored in the repository, demonstrating full integration. This setup provided a secure, automated, and reproducible dependency pipeline aligned with enterprise DevOps standards.
 
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
