@@ -17,19 +17,10 @@ To establish a secure and efficient development environment, I provisioned an Am
 To streamline development workflows, I leveraged Visual Studio Code’s Remote – SSH extension, enabling seamless in-editor access to the remote environment, eliminating the need for manual file transfers or external SSH clients.
 
 The environment was configured with Amazon Corretto 8 and Apache Maven to meet the project’s Java runtime requirements. I initialized the project using Maven’s archetype system, promoting a standardized and modular codebase structure. 
+
 ![image](https://github.com/user-attachments/assets/5fa2346f-f8d4-41c1-abd4-c835ae3db323)
 
 Version control was set up with Git, securely connected to GitHub via a Personal Access Token (PAT), laying the groundwork for smooth integration into a CI/CD pipeline.
-
-#### Setting Up Git and GitHub on an EC2 Instance  
-Git was installed and configured on the EC2 instance:  
-```
-sudo apt-get update
-sudo apt-get install git
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-```  
-A GitHub repository was linked using a Personal Access Token (PAT) for secure push and pull operations. This enabled automatic source control integration to trigger pipeline execution on code changes. 
 
 ### Secure Dependency Management with AWS CodeArtifact
 To securely manage project dependencies, AWS CodeArtifact was configured with the following:
