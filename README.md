@@ -30,15 +30,14 @@ A domain (nextwork) and repository (nextwork-devops-cicd) were created in CodeAr
 ![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
 
 Authentication was handled via an IAM role attached to the EC2 build instance. Using AWS STS, the role generated temporary tokens that were injected into Maven’s settings.xml and environment variables at runtime—eliminating static credentials and reducing the attack surface.
-![image](https://github.com/user-attachments/assets/8bf569e1-63ad-410a-888d-04ef0c299dac)
-
-Once configured, Maven successfully pulled dependencies from CodeArtifact during the build process. Post-build verification confirmed that the expected packages were stored in the repository, demonstrating full integration. This setup provided a secure, automated, and reproducible dependency pipeline aligned with enterprise DevOps standards.
 
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
-#### Verifying the Connection
-After compiling, the CodeArtifact repository was checked, confirming the presence of Maven packages and a successful integration.
+Once configured, Maven successfully pulled dependencies from CodeArtifact during the build process. Post-build verification confirmed that the expected packages were stored in the repository, demonstrating full integration. 
+
 ![image](https://github.com/user-attachments/assets/1875755e-c0ab-4f9c-abda-18d170812439)
+
+This setup provided a secure, automated, and reproducible dependency pipeline aligned with enterprise DevOps standards.
 
 ### Continuous Integration with AWS CodeBuild
 AWS CodeBuild was integrated with GitHub via an app, removing the need for manual credential management.
