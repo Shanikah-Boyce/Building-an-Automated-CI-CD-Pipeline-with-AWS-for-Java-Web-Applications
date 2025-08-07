@@ -57,16 +57,13 @@ By leveraging CodeBuild’s native integration with AWS services and customizing
 To establish a fully automated CI/CD pipeline, infrastructure was provisioned using AWS CloudFormation, including an EC2 instance and its associated networking resources. Deployment automation was achieved through a combination of AWS CodeBuild and AWS CodeDeploy, with supporting scripts and configuration files developed in Visual Studio Code.
 
 Several shell scripts were created to automate server setup and lifecycle management:
-
-    install_dependencies.sh installed Apache and Tomcat, configuring Apache as a reverse proxy.
-
-    start_server.sh ensured both services started automatically and restarted on reboot.
-
-    stop_server.sh safely stopped services to prevent deployment conflicts.
+- install_dependencies.sh- installed Apache and Tomcat, configuring Apache as a reverse proxy.
+- start_server.sh- ensured both services started automatically and restarted on reboot.
+- stop_server.sh- safely stopped services to prevent deployment conflicts.
 
 Deployment orchestration was defined in appspec.yml, which mapped files and specified lifecycle hooks for CodeDeploy. The buildspec.yml file packaged all necessary deployment assets, including lifecycle scripts, into a build artifact for CodeDeploy.
 
-An AWS CodeDeploy application and deployment group were configured, with IAM roles granting the required permissions. The EC2 instance was tagged with role=webserver, enabling targeted deployments and seamless scalability—new instances with matching tags automatically became deployment targets.
+An AWS CodeDeploy application and deployment group were configured, with IAM roles granting the required permissions. The EC2 instance was tagged with role=webserver, enabling targeted deployments and seamless scalability, new instances with matching tags automatically became deployment targets.
 
 The CodeDeploy agent was installed and configured on the EC2 instance, with automatic updates managed via AWS Systems Manager to ensure long-term reliability. Deployment artifacts were stored in S3 and pulled during deployment, with successful verification via the EC2 instance’s Public IPv4 DNS.
 
