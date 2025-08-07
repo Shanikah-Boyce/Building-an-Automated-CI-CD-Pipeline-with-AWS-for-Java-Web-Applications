@@ -44,34 +44,33 @@ To optimize the build and deployment process, AWS CodeBuild was integrated with 
 
 ![image](https://github.com/user-attachments/assets/5fd99875-97db-41da-8500-d6541932d86c)
 
-The build process was defined through a structured buildspec.yml file, outlining each phase of the lifecycle. An AWS-managed Corretto 8 image was selected for the build environment to ensure compatibility with the production runtime and maintain consistency across environments. During execution, secure authentication tokens were retrieved for AWS CodeArtifact, followed by Maven dependency resolution, compilation, and packaging.
+The build process was defined through a structured buildspec.yml file, outlining each phase of the lifecycle. 
+![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
 
-Upon successful completion, output artifacts—including a WAR file—were securely stored in the S3 bucket nextwork-devops-cicd-shanikah. These files were zipped and prepared for deployment. CloudWatch Logs were enabled to provide real-time visibility into the build process, allowing for rapid issue detection and resolution.
+
+An AWS-managed Corretto 8 image was selected for the build environment to ensure compatibility with the production runtime and maintain consistency across environments. During execution, secure authentication tokens were retrieved for AWS CodeArtifact, followed by Maven dependency resolution, compilation, and packaging.
+
+Upon successful completion, output artifacts—including a WAR file, were securely stored in the S3 bucket nextwork-devops-cicd-shanikah. These files were zipped and prepared for deployment. CloudWatch Logs were enabled to provide real-time visibility into the build process, allowing for rapid issue detection and resolution.
 
 By leveraging CodeBuild’s native integration with AWS services and customizing the environment, the pipeline was fully automated. The result was a secure, reliable, and efficient CI/CD system that accelerated deployment timelines, reduced manual overhead, and ensured consistent, production-ready builds.
 
 ### Automated Build & Deployment Pipeline with AWS CodeBuild, CodeDeploy and CloudFormation
 To complete the CI/CD pipeline, deployment automation was implemented using AWS CodeDeploy. After successful builds in CodeBuild, the resulting artifacts—including application files and lifecycle scripts—were stored in Amazon S3. These artifacts were then retrieved during deployment, ensuring a consistent and reliable transition from build to release.
 
-Deployment orchestration was defined in the `appspec.yml` file, which mapped files and specified lifecycle hooks for phased operations such as install, start, and stop. These phases were supported by custom shell scripts: 
+Deployment orchestration was defined in the `appspec.yml` file, which mapped files and specified lifecycle hooks for phased operations such as install, start, and stop. 
+![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
+
+These phases were supported by custom shell scripts: 
 - `install_dependencies.sh` installed Apache and Tomcat, with Apache configured as a reverse proxy to Tomcat
 - `start_server.sh` ensured services launched automatically and restarted on reboot
 - `stop_server.sh` safely halted services to prevent deployment conflicts
 
 To enable targeted and scalable deployments, an AWS CodeDeploy application and deployment group were configured with appropriate IAM roles. EC2 instances were tagged with `role=webserver`, allowing CodeDeploy to automatically include any new instances with matching tags. The CodeDeploy agent was installed on each EC2 instance and managed via AWS Systems Manager, ensuring long-term reliability and reducing operational overhead.
 
-Deployment success was verified through the EC2 instance’s Public IPv4 DNS, confirming that all components were correctly installed and functioning as expected. CodeDeploy’s tight integration with EC2 and support for lifecycle hooks enabled controlled, phased rollouts that minimized risk and improved deployment confidence.
-
-
-![image](https://github.com/user-attachments/assets/e30a7819-3c34-45e2-b606-7bd00578627f)
-
-
-![Screenshot 2025-05-07 144842](https://github.com/user-attachments/assets/3ce61412-7a68-43f4-93d8-40e2a90e4872)
-
-
-
+Deployment success was verified through the EC2 instance’s Public IPv4 DNS, confirming that all components were correctly installed and functioning as expected. 
 ![Screenshot 2025-05-07 160512](https://github.com/user-attachments/assets/f1817f5b-b9b9-446a-803f-3ca0ce97b683)
 
+CodeDeploy’s tight integration with EC2 and support for lifecycle hooks enabled controlled, phased rollouts that minimized risk and improved deployment confidence.
 
 ///
 
