@@ -29,7 +29,7 @@ A domain (nextwork) and repository (nextwork-devops-cicd) were created in CodeAr
 
 ![image](https://github.com/user-attachments/assets/f5c7888a-e206-42aa-bd35-1bf6cfdfb109)
 
-Authentication was handled via an IAM role attached to the EC2 build instance. Using AWS STS, the role generated temporary tokens that were injected into Maven’s settings.xml and environment variables at runtime—eliminating static credentials and reducing the attack surface.
+Authentication was handled via an IAM role attached to the EC2 build instance. Using AWS Security Token Service (STS), the role generated temporary tokens that were injected into Maven’s settings.xml and environment variables at runtime—eliminating static credentials and reducing the attack surface.
 
 ![image](https://github.com/user-attachments/assets/2ec5b0f0-6a3f-41c9-b941-00aaa57cbc35)
 
