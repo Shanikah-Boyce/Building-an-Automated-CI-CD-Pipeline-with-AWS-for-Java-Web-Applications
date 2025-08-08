@@ -21,7 +21,7 @@ To establish a secure and consistent foundation for managing Maven packages, AWS
 
 Authentication was securely managed using an IAM role with least-privilege permissions, attached to the EC2 instance. Temporary credentials were generated via AWS STS (Security Token Service) and dynamically injected into Maven’s `settings.xml` and environment variables at runtime, eliminating the need for static secrets and minimizing the attack surface. Token refresh mechanisms ensured uninterrupted access during extended build processes.
 
-During the build, Maven pulled dependencies directly from CodeArtifact. fter the build, verification confirmed that the expected packages were stored in the repository, demonstrating full integration and compliance with enterprise DevOps standards. The result was a secure, reproducible, and automated dependency pipeline.
+During the build, Maven pulled dependencies directly from CodeArtifact. After the build, verification confirmed that the expected packages were stored in the repository, demonstrating full integration and compliance with enterprise DevOps standards. The result was a secure, reproducible, and automated dependency pipeline.
 
 ## ⚙️ Continuous Integration with AWS CodeBuild
 
