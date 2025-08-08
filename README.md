@@ -21,14 +21,11 @@ Version control was established with Git, securely connected to GitHub via a Per
 ---
 
 ## 🔐 Secure Dependency Management with AWS CodeArtifact
+To establish a secure and consistent foundation for managing Maven packages, AWS CodeArtifact was configured as the central repository. A domain named nextwork was provisioned to group related repositories, including nextwork-devops-cicd, which used Maven Central as its upstream source. This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
 
-To ensure consistent and secure dependency resolution, AWS CodeArtifact was configured as the central Maven repository. A domain named `nextwork` and a repository called `nextwork-devops-cicd` were created, with Maven Central set as the upstream source. This configuration enabled access to public packages while enforcing internal controls such as version pinning, artifact caching, and isolation from unverified sources.
+Authentication was securely managed using an IAM role with least-privilege permissions, attached to the EC2 instance. Temporary credentials were generated via AWS STS (Security Token Service) and dynamically injected into Maven’s `settings.xml` and environment variables at runtime, eliminating the need for static secrets and minimizing the attack surface. Token refresh mechanisms ensured uninterrupted access during extended build processes.
 
-Authentication was handled via an IAM role attached to the EC2 instance. Temporary credentials were generated using AWS Security Token Service (STS) and injected into Maven’s `settings.xml` and environment variables at runtime, eliminating static secrets and reducing the attack surface.
-
-During builds, Maven successfully pulled dependencies from CodeArtifact. Post-build verification confirmed that expected packages were stored in the repository, demonstrating full integration. This setup aligned with enterprise DevOps standards by providing a secure, reproducible, and automated dependency pipeline.
-
----
+During the build, Maven pulled dependencies directly from CodeArtifact. fter the build, verification confirmed that the expected packages were stored in the repository, demonstrating full integration and compliance with enterprise DevOps standards. The result was a secure, reproducible, and automated dependency pipeline.
 
 ## ⚙️ Continuous Integration with AWS CodeBuild
 
