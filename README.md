@@ -35,6 +35,8 @@ Since the token expires after 12 hours, an automated refresh mechanism ensures i
 
 To support long-running build processes, an automated refresh mechanism regenerates and re-injects the token as needed, maintaining uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieves all dependencies directly from CodeArtifact, ensuring that builds are isolated from external sources and aligned with internal governance policies.
 
+<img width="1797" height="970" alt="image" src="https://github.com/user-attachments/assets/546f99e9-441a-4a57-942c-b03c0b30ef6c" />
+
 A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards. This solution delivers a secure, reproducible, and fully automated workflow for dependency management, streamlining builds and strengthening software supply chain security.
 
 ---
