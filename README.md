@@ -64,7 +64,8 @@ This CI pipeline enforces consistency, strengthens security and accelerates deli
 
 ---
 
-## 📦 Automated Deployment with AWS CodeDeploy & CloudFormation
+## Provisioning Production Resources Using AWS CloudFormation
+📦 Automated Deployment with AWS CodeDeploy & CloudFormation
 The deployment process began with AWS CloudFormation provisioning a production-grade EC2 instance along with its complete networking infrastructure. This included a virtual private cloud, subnets, route tables, an internet gateway, and a security group. The EC2 instance, tagged as “webserver,” was designed specifically to host the live application and was intentionally separated from the development environment to maintain a clear boundary.
 
 Using infrastructure as code, CloudFormation enabled automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches. This approach ensured consistent environments and reduced manual errors.
