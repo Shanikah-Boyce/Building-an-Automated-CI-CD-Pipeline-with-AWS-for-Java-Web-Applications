@@ -41,15 +41,13 @@ A post-build verification step confirms the presence and integrity of expected p
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
-To enable fast, secure, and automated builds, AWS CodeBuild is integrated with GitHub via the official GitHub App. This OAuth-based connection allows builds to trigger automatically with every push to the master branch—eliminating the need for static credentials.
+AWS CodeBuild automates building the Java application by compiling, testing, and packaging it into a deployable WAR (Web Application Archive) file. It integrates directly with GitHub via the official GitHub App, triggering builds automatically whenever code is pushed to the master branch. This eliminates manual steps and the need for static credentials.
 
-Each build runs in a clean, isolated environment defined by the buildspec.yml file. This file orchestrates the entire build lifecycle, including dependency resolution, testing, compilation, and packaging of the Java application into a WAR file.
+Each build runs in a fresh, isolated environment defined by the buildspec.yml file. This file outlines all build steps, ensuring consistency and repeatability. During the build, CodeBuild uses secure, time-limited tokens from AWS CodeArtifact to access the internal Maven repository, protecting the software supply chain.
 
-To securely retrieve dependencies, CodeBuild authenticates with AWS CodeArtifact using a time-bound token generated during each build. This token is injected into Maven’s settings.xml, enabling secure, temporary access to the internal Maven repository.
+After the build finishes successfully, the resulting WAR file is compressed into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket (nextwork-devops-cicd-shanikah). At the same time, build logs stream to Amazon CloudWatch Logs, allowing for real-time monitoring and auditing.
 
-Upon successful build completion, artifacts are uploaded to an encrypted S3 bucket (nextwork-devops-cicd-shanikah), while logs are streamed to Amazon CloudWatch Logs for real-time visibility, monitoring, and compliance.
-
-This setup delivers a fully automated, reproducible CI pipeline that’s tightly integrated with source control and internal artifact management—ensuring high-confidence, production-ready software with minimal manual effort.
+This setup creates a fully automated, secure, and reliable CI pipeline. It integrates source control, dependency management, and artifact storage, enabling efficient delivery of production-ready software with minimal manual effort.
 
 
 
