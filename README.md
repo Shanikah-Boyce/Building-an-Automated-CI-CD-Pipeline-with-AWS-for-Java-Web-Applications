@@ -8,7 +8,9 @@ The pipeline integrates four core AWS services: AWS CodePipeline orchestrates th
 
 ## 🖥Remote Development Environment on EC2
 
-To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair. SSH access was restricted to the project owner, ensuring tight control over entry points.
+To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair. SSH access was restricted to the instance owner, ensuring tight control over entry points.
+<img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
+
 
 Development was streamlined using Visual Studio Code’s Remote – SSH extension, allowing direct editing on the EC2 instance without manual file transfers. The environment was configured with Amazon Corretto 8 for Java runtime and Apache Maven for build automation. The project was scaffolded using Maven’s archetype system, promoting a standardized and modular codebase structure.
 
