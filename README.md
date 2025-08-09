@@ -41,7 +41,7 @@ A post-build verification step confirms the presence and integrity of expected p
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
-AWS CodeBuild automates building the Java application by compiling, testing, and packaging it into a deployable WAR (Web Application Archive) file. It integrates directly with GitHub via the official GitHub App, triggering builds automatically whenever code is pushed to the master branch. This eliminates manual steps and the need for static credentials.
+AWS CodeBuild automates building the Java application by compiling, testing, and packaging it into a deployable WAR (Web Application Archive) file. It integrates directly with GitHub via the official GitHub App, triggering builds automatically whenever code is pushed to the master branch. This eliminates manual intervention and the need for static credentials.
 
 Each build runs in a fresh, isolated environment defined by the buildspec.yml file. This file outlines all build steps, ensuring consistency and repeatability. During the build, CodeBuild uses secure, time-limited tokens from AWS CodeArtifact to access the internal Maven repository, protecting the software supply chain.
 
