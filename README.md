@@ -14,7 +14,9 @@ To support remote development, an Amazon EC2 instance was provisioned and secure
 
 SSH access was limited to the instance owner, reducing the attack surface and preventing unauthorized access.
  
-Development was streamlined using Visual Studio Code’s Remote – SSH extension, allowing direct editing on the EC2 instance without manual file transfers. The environment was configured with Amazon Corretto 8 for Java runtime and Apache Maven for build automation. The project was scaffolded using Maven’s archetype system, promoting a standardized and modular codebase structure.
+Development was streamlined using Visual Studio Code’s Remote – SSH extension, allowing direct editing on the EC2 instance without manual file transfers. The environment was configured with Amazon Corretto 8 for Java runtime and Apache Maven for build automation. The project was initialized using Maven’s archetype system, promoting a standardized and modular codebase structure.
+
+<img width="1888" height="631" alt="image" src="https://github.com/user-attachments/assets/cb03eb9d-01d0-4f6f-a747-13d79bb08c2c" />
 
 Version control was established with Git, securely connected to GitHub via a Personal Access Token (PAT). This laid the foundation for seamless integration with the CI/CD pipeline.
 
