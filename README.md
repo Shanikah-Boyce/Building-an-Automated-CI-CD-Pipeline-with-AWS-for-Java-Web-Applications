@@ -40,6 +40,21 @@ To support long-running build processes, an automated refresh mechanism regenera
 A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards. This solution delivers a secure, reproducible, and fully automated workflow for dependency management, streamlining builds and strengthening software supply chain security.
 
 ---
+⚙️ Continuous Integration with AWS CodeBuild
+To enable fast, secure, and automated builds, AWS CodeBuild was integrated with GitHub using the official GitHub App. This integration eliminates the need for manual credentials by using OAuth-based authentication, allowing builds to trigger automatically on push and pull request events.
+
+Each build runs in a clean, isolated environment provisioned by CodeBuild. The build process is defined in the buildspec.yml file, which orchestrates the full lifecycle—from dependency resolution and testing to compilation and packaging of the application (e.g., into a WAR file).
+
+During execution, CodeBuild assumes its service IAM role, which includes permissions to interact with AWS CodeArtifact and AWS Security Token Service (STS). Using these permissions, CodeBuild calls the AWS CLI to retrieve a temporary, time-limited authorization token from CodeArtifact. This token is dynamically injected into Maven’s settings.xml file, enabling secure access to internal Maven repositories without relying on hardcoded credentials.
+
+This token-based mechanism ensures that each build uses fresh, least-privilege credentials. Because the CodeArtifact token expires after 12 hours, a new token is generated automatically for every build, maintaining secure access to dependencies while minimizing the risk of credential leakage.
+
+Once the build completes, the generated artifacts—such as the WAR file—are uploaded to an encrypted S3 bucket (nextwork-devops-cicd-shanikah) governed by strict IAM policies. Build logs are streamed to Amazon CloudWatch Logs in real time, offering centralized visibility for debugging, monitoring, and compliance.
+
+This setup delivers a fully automated, repeatable CI pipeline that integrates tightly with source control, artifact management, and secure build execution—ensuring high-confidence, production-ready software with minimal manual intervention.
+
+---
+
 
 ## ⚙️ Continuous Integration with AWS CodeBuild
 Sure! Here are some suggestions to elevate the write-up even further and make it more polished and impactful:
