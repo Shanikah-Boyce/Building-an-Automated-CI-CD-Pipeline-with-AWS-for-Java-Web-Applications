@@ -33,21 +33,11 @@ Access to AWS CodeArtifact is managed through an IAM role with read-only permiss
 
 Since the token expires after 12 hours, an automated refresh mechanism ensures it is regenerated and re-injected during long-running build processes, maintaining uninterrupted access while minimizing security exposure.
 
+To support long-running build processes, an automated refresh mechanism regenerates and re-injects the token as needed, maintaining uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieves all dependencies directly from CodeArtifact, ensuring that builds are isolated from external sources and aligned with internal governance policies.
 
+A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards. This solution delivers a secure, reproducible, and fully automated workflow for dependency management, streamlining builds and strengthening software supply chain security.
 
-///
-Authentication was handled through an IAM role with least-privilege permissions attached to the EC2 instance. Temporary credentials were issued via AWS Security Token Service (STS), and an authorization token was retrieved using the AWS CLI's get-authorization-token command. The token was exported to the environment variable CODEARTIFACT_AUTH_TOKEN and injected into Maven’s settings.xml via a bearer token profile. With a maximum lifespan of 12 hours, the token eliminated the need for static credentials, reducing exposure risks. A refresh mechanism was also implemented to ensure uninterrupted access during long-running builds.
-
-Within the CI/CD pipeline, Maven retrieved all dependencies directly from CodeArtifact. A post-build verification step confirmed the presence of expected packages, validating the integrity of the process and ensuring compliance with enterprise DevOps standards. The result was a secure, reproducible, and fully automated dependency management workflow.
-
-
-
-
-
-''
-Authentication was securely managed using an IAM role with least-privilege permissions, attached to the EC2 instance. Temporary credentials were generated via AWS STS (Security Token Service) and dynamically injected into Maven’s `settings.xml` and environment variables at runtime, eliminating the need for static secrets and minimizing the attack surface. Token refresh mechanisms ensured uninterrupted access during extended build processes.
-
-During the build, Maven pulled dependencies directly from CodeArtifact. After the build, verification confirmed that the expected packages were stored in the repository, demonstrating full integration and compliance with enterprise DevOps standards. The result was a secure, reproducible, and automated dependency pipeline.
+---
 
 ## ⚙️ Continuous Integration with AWS CodeBuild
 
