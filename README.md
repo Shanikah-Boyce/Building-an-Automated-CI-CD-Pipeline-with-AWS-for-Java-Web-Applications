@@ -41,15 +41,19 @@ A post-build verification step confirms the presence and integrity of expected p
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
-The CI pipeline for the Java application is powered by AWS CodeBuild, which automates compiling, testing, and packaging the code into a deployable WAR (Web Application Archive) file. Integrated directly with GitHub via the official GitHub App, it triggers builds automatically on every push to the `master` branch, eliminating manual intervention and removing the need for static credentials.
+To automate the build and deployment process for the Java application, AWS CodeBuild serves as the backbone of the continuous integration (CI) pipeline. This setup compiles, tests, and packages the application into a deployable WAR (Web Application Archive) file—all without manual intervention.
 
-Builds run in isolated environments defined by the `buildspec.yml` file, which outlines a four-phase process:
+The pipeline is tightly integrated with GitHub through the official GitHub App, enabling automatic build triggers on every push to the master branch. This eliminates the need for static credentials and manual build initiation, ensuring a secure and hands-free workflow.
+
+Each build runs in a clean, isolated environment defined by the `buildspec.yml` file. The process follows four distinct phases:
 - Install: Sets up the Java runtime using Amazon Corretto 8.
 - Pre-build: Initializes the environment and retrieves a temporary token to authenticate with AWS CodeArtifact.
 - Build: Compiles the application using Maven with a custom settings.xml.
 - Post-build: Packages the compiled code into a WAR file and prepares deployment assets.
 
-Artifacts (including the `WAR` file, `appspec.yml` and deployment scripts) are bundled and securely uploaded to an encrypted Amazon S3 bucket (`nextwork-devops-cicd-shanikah`). Meanwhile, build logs stream to Amazon CloudWatch Logs, providing real-time visibility and traceability.
+Once the build completes, all artifacts—including the WAR file, appspec.yml, and deployment scripts—are bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket (nextwork-devops-cicd-shanikah). Meanwhile, build logs are streamed to Amazon CloudWatch Logs, offering real-time monitoring and traceability.
+
+This CI pipeline does more than automate tasks—it enforces consistency, enhances security, and accelerates delivery. By combining source control, build orchestration, and artifact storage into a unified workflow, it enables fast, reliable deployment of production-ready software with minimal overhead.
 
 This pipeline delivers more than automation, it ensures security, consistency, and speed. By integrating source control, build orchestration, and artifact storage, it enables rapid delivery of production-ready software with minimal manual effort and maximum reliability.
 
