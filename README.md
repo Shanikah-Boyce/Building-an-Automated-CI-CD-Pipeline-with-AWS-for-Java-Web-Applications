@@ -41,6 +41,26 @@ A post-build verification step confirms the presence and integrity of expected p
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
+The CI pipeline for the Java application is powered by AWS CodeBuild, which automates compiling, testing, and packaging the code into a deployable WAR (Web Application Archive) file. Integrated directly with GitHub via the official GitHub App, it triggers builds automatically on every push to the `master` branch, eliminating manual intervention and removing the need for static credentials.
+
+Builds run in isolated environments defined by the `buildspec.yml` file, which outlines a four-phase process:
+- Install: Sets up the Java runtime using Amazon Corretto 8.
+- Pre-build: Initializes the environment and retrieves a temporary token to authenticate with AWS CodeArtifact.
+- Build: Compiles the application using Maven with a custom settings.xml.
+- Post-build: Packages the compiled code into a WAR file and prepares deployment assets.
+
+Artifacts (including the `WAR` file, `appspec.yml` and deployment scripts) are bundled and securely uploaded to an encrypted Amazon S3 bucket (`nextwork-devops-cicd-shanikah`). Meanwhile, build logs stream to Amazon CloudWatch Logs, providing real-time visibility and traceability.
+
+This pipeline delivers more than automation, it ensures security, consistency, and speed. By integrating source control, build orchestration, and artifact storage, it enables rapid delivery of production-ready software with minimal manual effort and maximum reliability.
+
+
+
+
+
+
+...
+
+---
 AWS CodeBuild automates building the Java application by compiling, testing, and packaging it into a deployable WAR (Web Application Archive) file. It integrates directly with GitHub via the official GitHub App, triggering builds automatically whenever code is pushed to the master branch. This eliminates manual intervention and the need for static credentials.
 
 Each build runs in a fresh, isolated environment defined by the buildspec.yml file. This file outlines all build steps, ensuring consistency and repeatability. During the build, CodeBuild uses secure, time-limited tokens from AWS CodeArtifact to access the internal Maven repository, protecting the software supply chain.
