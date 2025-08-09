@@ -23,7 +23,11 @@ Version control was established with Git, securely connected to GitHub via a Per
 ---
 
 ## 🔐 Secure Dependency Management with AWS CodeArtifact
-To establish a secure and consistent foundation for managing Maven packages, AWS CodeArtifact was configured as the central repository. A domain named `nextwork` was provisioned to group related repositories, including `nextwork-devops-cicd`, which used Maven Central as its upstream source. This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
+To establish a secure and consistent foundation for managing Maven packages, AWS CodeArtifact was configured as the central repository. A domain named `nextwork` was provisioned to group related repositories, including `nextwork-devops-cicd`, which used Maven Central as its upstream source. 
+
+<img width="889" height="338" alt="image" src="https://github.com/user-attachments/assets/9b0965ae-6c28-4184-9396-318c65cd54f9" />
+
+This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
 
 Authentication was securely managed using an IAM role with least-privilege permissions, attached to the EC2 instance. Temporary credentials were generated via AWS STS (Security Token Service) and dynamically injected into Maven’s `settings.xml` and environment variables at runtime, eliminating the need for static secrets and minimizing the attack surface. Token refresh mechanisms ensured uninterrupted access during extended build processes.
 
