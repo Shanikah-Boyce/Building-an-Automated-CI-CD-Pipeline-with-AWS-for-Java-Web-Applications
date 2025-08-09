@@ -8,7 +8,8 @@ The pipeline integrates four core AWS services: AWS CodePipeline orchestrates th
 
 ## 🖥Remote Development Environment on EC2
 
-To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair. SSH access was restricted to the instance owner, ensuring tight control over entry points.
+To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair. SSH access was limited to the instance owner, reducing the attack surface and preventing unauthorized access.
+
 <img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
 
 
