@@ -29,6 +29,22 @@ To establish a secure and consistent foundation for managing Maven packages, AWS
 
 This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
 
+Access to AWS CodeArtifact is managed through an IAM role with read-only permissions for both CodeArtifact and AWS Security Token Service (STS). The role acquires temporary credentials via STS, which are used to generate an authorization token through the AWS CLI. This token is stored in the `CODEARTIFACT_AUTH_TOKEN` environment variable and injected into Maven’s `settings.xml` as a bearer token profile, enabling secure, time-limited access to the repository without relying on static credentials.
+
+Since the token expires after 12 hours, an automated refresh mechanism ensures it is regenerated and re-injected during long-running build processes, maintaining uninterrupted access while minimizing security exposure.
+
+
+
+///
+Authentication was handled through an IAM role with least-privilege permissions attached to the EC2 instance. Temporary credentials were issued via AWS Security Token Service (STS), and an authorization token was retrieved using the AWS CLI's get-authorization-token command. The token was exported to the environment variable CODEARTIFACT_AUTH_TOKEN and injected into Maven’s settings.xml via a bearer token profile. With a maximum lifespan of 12 hours, the token eliminated the need for static credentials, reducing exposure risks. A refresh mechanism was also implemented to ensure uninterrupted access during long-running builds.
+
+Within the CI/CD pipeline, Maven retrieved all dependencies directly from CodeArtifact. A post-build verification step confirmed the presence of expected packages, validating the integrity of the process and ensuring compliance with enterprise DevOps standards. The result was a secure, reproducible, and fully automated dependency management workflow.
+
+
+
+
+
+''
 Authentication was securely managed using an IAM role with least-privilege permissions, attached to the EC2 instance. Temporary credentials were generated via AWS STS (Security Token Service) and dynamically injected into Maven’s `settings.xml` and environment variables at runtime, eliminating the need for static secrets and minimizing the attack surface. Token refresh mechanisms ensured uninterrupted access during extended build processes.
 
 During the build, Maven pulled dependencies directly from CodeArtifact. After the build, verification confirmed that the expected packages were stored in the repository, demonstrating full integration and compliance with enterprise DevOps standards. The result was a secure, reproducible, and automated dependency pipeline.
