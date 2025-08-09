@@ -40,93 +40,20 @@ To support long-running build processes, an automated refresh mechanism regenera
 A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards. This solution delivers a secure, reproducible, and fully automated workflow for dependency management, streamlining builds and strengthening software supply chain security.
 
 ---
-⚙️ Continuous Integration with AWS CodeBuild
-To enable fast, secure, and automated builds, AWS CodeBuild was integrated with GitHub using the official GitHub App. This integration eliminates the need for manual credentials by using OAuth-based authentication, allowing builds to trigger automatically on push and pull request events.
-
-Each build runs in a clean, isolated environment provisioned by CodeBuild. The build process is defined in the buildspec.yml file, which orchestrates the full lifecycle—from dependency resolution and testing to compilation and packaging of the application (e.g., into a WAR file).
-
-During execution, CodeBuild assumes its service IAM role, which includes permissions to interact with AWS CodeArtifact and AWS Security Token Service (STS). Using these permissions, CodeBuild calls the AWS CLI to retrieve a temporary, time-limited authorization token from CodeArtifact. This token is dynamically injected into Maven’s settings.xml file, enabling secure access to internal Maven repositories without relying on hardcoded credentials.
-
-This token-based mechanism ensures that each build uses fresh, least-privilege credentials. Because the CodeArtifact token expires after 12 hours, a new token is generated automatically for every build, maintaining secure access to dependencies while minimizing the risk of credential leakage.
-
-Once the build completes, the generated artifacts—such as the WAR file—are uploaded to an encrypted S3 bucket (nextwork-devops-cicd-shanikah) governed by strict IAM policies. Build logs are streamed to Amazon CloudWatch Logs in real time, offering centralized visibility for debugging, monitoring, and compliance.
-
-This setup delivers a fully automated, repeatable CI pipeline that integrates tightly with source control, artifact management, and secure build execution—ensuring high-confidence, production-ready software with minimal manual intervention.
-
----
-
-
 ## ⚙️ Continuous Integration with AWS CodeBuild
-Sure! Here are some suggestions to elevate the write-up even further and make it more polished and impactful:
+To enable fast, secure, and automated builds, AWS CodeBuild is integrated with GitHub via the official GitHub App. This OAuth-based connection allows builds to trigger automatically with every push to the master branch—eliminating the need for static credentials.
 
-1. **Add a brief context sentence at the start of the CodeBuild section** to remind the reader why CI matters in your workflow — sets the stage for what follows without rehashing previous sections.
+Each build runs in a clean, isolated environment defined by the buildspec.yml file. This file orchestrates the entire build lifecycle, including dependency resolution, testing, compilation, and packaging of the Java application into a WAR file.
 
-2. **Highlight the role of automation and security more explicitly** — emphasize how automation reduces human error and how temporary credentials align with security best practices.
+To securely retrieve dependencies, CodeBuild authenticates with AWS CodeArtifact using a time-bound token generated during each build. This token is injected into Maven’s settings.xml, enabling secure, temporary access to the internal Maven repository.
 
-3. **Use active voice and simpler sentence structures** to make the text more direct and readable.
+Upon successful build completion, artifacts are uploaded to an encrypted S3 bucket (nextwork-devops-cicd-shanikah), while logs are streamed to Amazon CloudWatch Logs for real-time visibility, monitoring, and compliance.
 
-4. **Clarify any jargon or abbreviations on first use** (e.g., “WAR file” if your audience may not be familiar).
-
-5. **End with a concise summary sentence** reinforcing the benefits of your approach.
-
-Here’s an example incorporating those tips:
-
----
-
-## ⚙️ Continuous Integration with AWS CodeBuild
-
-To ensure fast, reliable, and secure software delivery, AWS CodeBuild was integrated with GitHub using the official GitHub App. This setup enables automated builds triggered by code changes, eliminating manual intervention and improving overall development velocity.
-
-Each build runs in a fresh, ephemeral environment provisioned by CodeBuild. The buildspec orchestrates all phases—from resolving dependencies and running tests to compiling and packaging the application into a WAR (Web Application Archive) file.
-
-During the build, CodeBuild assumes an IAM role with permissions to access AWS CodeArtifact and AWS STS. It dynamically generates a temporary authorization token via the AWS CLI, injecting this token into Maven’s `settings.xml`. This ensures Maven securely fetches dependencies from CodeArtifact without storing long-lived credentials, aligning with AWS security best practices.
-
-Upon successful packaging, build artifacts are uploaded to an encrypted S3 bucket (`nextwork-devops-cicd-shanikah`) protected by strict access policies. Build logs stream in real time to CloudWatch Logs, providing comprehensive monitoring and troubleshooting capabilities.
-
-This fully automated pipeline tightly integrates source control, dependency management, and build execution, delivering reproducible, production-ready artifacts while maintaining strong security and operational visibility.
-
----
-
-If you want, I can also help you with example snippets (buildspec.yml, IAM policies) or suggest diagrams to visually reinforce the flow. Would that be helpful?
+This setup delivers a fully automated, reproducible CI pipeline that’s tightly integrated with source control and internal artifact management—ensuring high-confidence, production-ready software with minimal manual effort.
 
 
 
 
-
-
-
-
-
-
-
-## 🔧 Automated Builds with AWS CodeBuild
-
-Leveraging the secure remote development environment and robust dependency management, AWS CodeBuild was seamlessly integrated with GitHub via the official GitHub App. This eliminated the need for manual credentials and enabled automatic build triggers on every push to the `master` branch, ensuring continuous and reliable CI/CD execution.
-
-The build lifecycle was defined in a version-controlled `buildspec.yml` file, detailing all necessary phases from dependency retrieval to artifact packaging. CodeBuild utilized the AWS-managed Corretto 8 environment, matching the EC2 development setup to maintain runtime consistency across development and CI pipelines.
-
-Secure access to private dependencies was maintained by dynamically generating temporary AWS credentials and injecting CodeArtifact authorization tokens into Maven’s configuration at build time. This ensured all dependencies were resolved exclusively through CodeArtifact, reinforcing supply chain security and compliance.
-
-Upon successful compilation and packaging, the generated artifacts—including the WAR file—were securely stored in the encrypted S3 bucket `nextwork-devops-cicd-shanikah`. Meanwhile, real-time build logs streamed to CloudWatch Logs provided actionable insights for fast troubleshooting and monitoring.
-
-This fully automated pipeline delivered repeatable, production-ready builds with minimal manual overhead, tightly integrating source control, secure dependency management, and artifact storage into a cohesive, scalable CI/CD solution.
-
----
-
-Would you like it more formal, more concise, or adapted to a particular audience?
-
-
-
-
-
-////////
-AWS CodeBuild was integrated with GitHub using the official GitHub app, eliminating the need for manual credentials and improving security posture. Builds were automatically triggered on code changes, enabling a smooth and efficient CI/CD workflow.
-
-The build process was defined in a structured `buildspec.yml` file. The build environment used AWS-managed Corretto 8 to match the production runtime. During execution, secure tokens were retrieved for CodeArtifact, followed by Maven dependency resolution, compilation, and packaging. Output artifacts, including a WAR file, were uploaded to the S3 bucket `nextwork-devops-cicd-shanikah`.
-
-CloudWatch Logs provided real-time visibility into the build process, enabling fast debugging and monitoring. This integration resulted in a fully automated build pipeline that produced consistent, production-ready artifacts with minimal manual effort.
-
----
 
 ## 📦 Automated Deployment with AWS CodeDeploy & CloudFormation
 
