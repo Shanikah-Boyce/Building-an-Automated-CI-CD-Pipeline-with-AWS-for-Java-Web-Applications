@@ -103,6 +103,8 @@ Upon detecting a change, the pipeline begins with the Source stage, retrieving t
 In the final stage, CodeDeploy deploys the application to EC2 instances with zero downtime, ensuring uninterrupted access for users. If a deployment fails, CodeDeploy rolls back to the last stable version, preserving production integrity.
 
 A minor code change was used to validate the pipeline’s responsiveness. The successful execution confirmed the reliability and efficiency of the CI/CD strategy.
+<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
+
 
 ---
 
