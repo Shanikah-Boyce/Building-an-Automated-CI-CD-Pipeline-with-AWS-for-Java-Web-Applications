@@ -95,9 +95,9 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
-To orchestrate the entire software delivery lifecycle, AWS CodePipeline was implemented as the backbone of the CI/CD workflow. The pipeline, named nextwork-devops-cicd, was configured using Pipeline Type V2 with superseded execution mode, allowing newer executions to automatically cancel any in-progress runs. This ensures efficient resource utilization and consistent deployment behavior, especially in fast-paced development environments.
+To orchestrate the complete CI/CD workflow, AWS CodePipeline serves as the automation backbone. The pipeline (`nextwork-devops-cicd`) is configured with Pipeline Type V2 and operates in superseded execution mode, which automatically cancels any in-progress runs when a newer change is detected. This mechanism ensures optimal resource utilization and maintains deployment consistency.
 
-A dedicated Amazon S3 bucket was provisioned as the default artifact store, providing secure and scalable storage for build outputs and deployment packages. The pipeline is governed by the IAM service role AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd, which grants tightly scoped permissions to interact with AWS services such as CodeBuild, CodeDeploy, and S3, ensuring secure, auditable automation across all stages.
+A dedicated Amazon S3 bucket functions as the default artifact store, while the pipeline is securely governed by the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`. This role enables seamless and secure integration with AWS CodeBuild, CodeDeploy and Amazon S3, facilitating a robust and scalable deployment process.
 
 <img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
 
