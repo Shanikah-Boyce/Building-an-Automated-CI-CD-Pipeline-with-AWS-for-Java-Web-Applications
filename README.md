@@ -95,7 +95,9 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
-To unify and automate the entire CI/CD workflow, AWS CodePipeline was implemented as the central orchestrator for build, test and deployment processes.
+To orchestrate the entire software delivery lifecycle, AWS CodePipeline was implemented as the backbone of the CI/CD workflow. The pipeline, named nextwork-devops-cicd, was configured using Pipeline Type V2 with superseded execution mode, allowing newer executions to automatically cancel any in-progress runs. This ensures efficient resource utilization and consistent deployment behavior, especially in fast-paced development environments.
+
+A dedicated Amazon S3 bucket was provisioned as the default artifact store, providing secure and scalable storage for build outputs and deployment packages. The pipeline is governed by the IAM service role AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd, which grants tightly scoped permissions to interact with AWS services such as CodeBuild, CodeDeploy, and S3, ensuring secure, auditable automation across all stages.
 
 <img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
 
@@ -118,14 +120,10 @@ AWS CodeDeploy handles deployment to the target environment. Rollback is automat
 
 <img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 
-
----
-
-## ✅ Outcome
-
-By automating software delivery with AWS-native tools, this project achieved faster deployment cycles, reduced manual intervention, improved security and traceability, and scalable infrastructure-as-code provisioning. The result is a robust foundation for modern DevOps workflows in cloud-native Java applications.
+By integrating AWS-native services into a unified CI/CD pipeline, this implementation delivers rapid release cycles, robust security controls, and scalable infrastructure-as-code provisioning. It provides a resilient foundation for modern DevOps workflows, enabling continuous delivery of cloud-native Java applications with minimal manual overhead.
 
 <img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
+
 ---
 
 
