@@ -31,13 +31,11 @@ This setup enabled access to public packages while enforcing internal controls s
 
 Access to AWS CodeArtifact is managed through an IAM role with read-only permissions for both CodeArtifact and AWS Security Token Service (STS). The role acquires temporary credentials via STS, which are used to generate an authorization token through the AWS CLI. This token is stored in the `CODEARTIFACT_AUTH_TOKEN` environment variable and injected into Maven’s `settings.xml` as a bearer token profile, enabling secure, time-limited access to the repository without relying on static credentials.
 
-Since the token expires after 12 hours, an automated refresh mechanism ensures it is regenerated and re-injected during long-running build processes, maintaining uninterrupted access while minimizing security exposure.
-
-To support long-running build processes, an automated refresh mechanism regenerates and re-injects the token as needed, maintaining uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieves all dependencies directly from CodeArtifact, ensuring that builds are isolated from external sources and aligned with internal governance policies.
+Since the token expires after 12 hours, an automated refresh mechanism regenerates and re-injects the token as needed during long-running build processes, maintaining uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieves all dependencies directly from CodeArtifact, ensuring that builds are isolated from external sources and aligned with internal governance policies.
 
 <img width="1797" height="970" alt="image" src="https://github.com/user-attachments/assets/546f99e9-441a-4a57-942c-b03c0b30ef6c" />
 
-A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards. This solution delivers a secure, reproducible, and fully automated workflow for dependency management, streamlining builds and strengthening software supply chain security.
+A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards.
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
@@ -59,7 +57,7 @@ Build logs are streamed to Amazon CloudWatch Logs for real-time monitoring and t
 
 <img width="1883" height="945" alt="image" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
 
-This CI pipeline enforces consistency, strengthens security and accelerates delivery. By unifying source control, build orchestration, and artifact storage, it enables fast, reliable deployment of production-ready software with minimal overhead.
+
 <img width="1820" height="958" alt="image" src="https://github.com/user-attachments/assets/e52396b3-9121-49d5-bc2f-be748ae339bb" />
 
 ---
@@ -68,9 +66,6 @@ This CI pipeline enforces consistency, strengthens security and accelerates deli
 The deployment process began with AWS CloudFormation provisioning a production-grade EC2 instance along with its complete networking infrastructure. This included a virtual private cloud, subnets, route tables, an internet gateway, and a security group. The EC2 instance, tagged as “webserver,” was designed specifically to host the live application and was intentionally separated from the development environment to maintain a clear boundary.
 
 Using infrastructure as code, CloudFormation enabled automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches. This approach ensured consistent environments and reduced manual errors.
-
-
-Here's your revised text with corrected grammar, improved clarity, and consistent formatting, while preserving your original intent and technical accuracy:
 
 ---
 
@@ -90,13 +85,9 @@ Once deployment was complete, the application was validated by accessing the EC2
 
 <img width="942" height="345" alt="image" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
 
-With this setup, each release was fast, fully automated, and consistent, reflecting infrastructure-as-code and DevOps best practices.
-
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
-### AWS CodePipeline
-
 This project uses AWS CodePipeline to orchestrate a fully automated CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
 
 The pipeline`nextwork-devops-cicd`—is built using Pipeline Type V2 and runs in superseded execution mode, ensuring only the latest code changes are deployed by automatically canceling outdated runs. This design reduces deployment risk and maintains consistency across environments.
@@ -107,15 +98,14 @@ Each stage is modular and purpose-built, with CodePipeline managing execution fl
 
 Access control is enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which follows least-privilege principles and provides scoped permissions to all integrated services.
 
-This pipeline reflects a scalable, secure, and maintainable CI/CD architecture designed for fast, reliable delivery with minimal manual intervention.
-
 ---
 ## Conclusion
 This project successfully implements a fully automated CI/CD pipeline using AWS services for a Java-based web application. By integrating AWS CodePipeline, CodeBuild, CodeDeploy, and CodeArtifact, the pipeline ensures rapid, repeatable, and secure software delivery from source control to production. Manual steps were eliminated, reducing human error, improving deployment speed, and enforcing consistent environments through infrastructure as code.
 
 Through the use of IAM roles, temporary credentials, and artifact verification, the solution also emphasizes security and governance—critical for enterprise-grade DevOps workflows. With the pipeline in place, each release is not only faster and more reliable but also aligned with cloud-native best practices.
 
-Personal reflection: This project deepened my expertise in AWS DevOps services, reinforced the value of automation in reducing operational risk, and taught me the importance of designing for both speed and security from the start. The experience also strengthened my problem-solving skills—especially in diagnosing deployment issues and designing resilient token management solutions.
+### Personal reflection
+This project deepened my expertise in AWS DevOps services, reinforced the value of automation in reducing operational risk, and taught me the importance of designing for both speed and security from the start. The experience also strengthened my problem-solving skills—especially in diagnosing deployment issues and designing resilient token management solutions.
 
 ---
 To orchestrate the complete CI/CD workflow, AWS CodePipeline serves as the automation backbone. The pipeline (`nextwork-devops-cicd`) is configured with Pipeline Type V2 and operates in superseded execution mode, which automatically cancels any in-progress runs when a newer change is detected. This mechanism ensures optimal resource utilization and maintains deployment consistency.
