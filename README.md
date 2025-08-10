@@ -103,6 +103,8 @@ The pipeline is structured into three main stages:
 
 ### Source Stage
 This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
+### Source Stage
+This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
 
 <img width="617" height="461" alt="image" src="https://github.com/user-attachments/assets/b4ecd393-099d-4183-bae1-b51bc24e4b52" />
 
