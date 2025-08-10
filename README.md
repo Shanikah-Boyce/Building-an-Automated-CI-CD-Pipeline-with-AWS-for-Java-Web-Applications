@@ -98,6 +98,8 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 
 AWS CodePipeline ties the entire CI/CD process together, integrating GitHub, CodeBuild, and CodeDeploy into a seamless workflow. The pipeline continuously monitors the `master` branch via webhook triggers, enabling near real-time execution whenever new code is pushed.
 
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
+
 Upon detecting a change, the pipeline begins with the Source stage, retrieving the latest code from GitHub. It then moves to the Build stage, where CodeBuild compiles and packages the application. Operating in Superseded mode, the pipeline processes only the most recent revision, avoiding redundant builds and conserving resources. IAM roles are automatically provisioned to enforce least-privilege access across services.
 
 In the final stage, CodeDeploy deploys the application to EC2 instances with zero downtime, ensuring uninterrupted access for users. If a deployment fails, CodeDeploy rolls back to the last stable version, preserving production integrity.
