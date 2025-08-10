@@ -69,18 +69,16 @@ The deployment process began with AWS CloudFormation provisioning a production-g
 
 Using infrastructure as code, CloudFormation enabled automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches. This approach ensured consistent environments and reduced manual errors.
 
-## Automated 
-To complete the CI/CD pipeline, AWS CodeDeploy was configured to orchestrate secure and controlled application deployment to EC2 instances. After successful builds in AWS CodeBuild, application files and lifecycle scripts were stored in the encrypted S3 bucket and retrieved during deployment. Deployment orchestration was defined in the appspec.yml file, which mapped application files and declared lifecycle event hooks. These hooks were supported by custom shell scripts: install_dependencies.sh installed Apache HTTP Server and Apache Tomcat, configuring Apache as a reverse proxy; start_server.sh launched services and enabled auto-restart on reboot; and stop_server.sh gracefully halted services before deployment to ensure clean updates. CodeDeploy deployed assets to EC2 instances provisioned via CloudFormation, with the CodeDeploy agent installed and centrally managed using AWS Systems Manager to enable automated health checks and reduce operational overhead. Deployment success was validated by accessing the EC2 instance’s public endpoint, confirming that the application was correctly installed and running. CodeDeploy’s lifecycle hooks and rollback capabilities enabled safe, phased rollouts with minimal downtime and rapid recovery, delivering automated, repeatable deployments with zero manual steps, secure delivery through IAM roles and encrypted artifact access, and operational resilience through centralized agent management.
 
+## Automated
+This dedicated Amazon EC2 instance, provisioned through AWS CloudFormation, served as the deployment target for AWS CodeDeploy, using the `network-devops-cicd-deploymentgroup` with the AllAtOnce strategy. This method replaced the application in a single step, resulting in brief downtime but offering a fast and simple deployment approach ideal for lean infrastructure environments.
 
----
-Deployment automation was achieved using AWS CodeDeploy. After successful builds, application files and lifecycle scripts were stored in S3 and retrieved during deployment. Deployment behavior was defined in the `appspec.yml` file, which mapped files and specified lifecycle hooks for install, start, and stop phases.
+To maintain system health with minimal manual effort, AWS Systems Manager was configured for automated maintenance. Every 14 days, it handled tasks such as installing or updating the CodeDeploy Agent, cleaning up logs and applying system updates. This ensured the environment remained secure and performant without requiring direct intervention.
 
-These phases were supported by custom shell scripts: `install_dependencies.sh` installed Apache and Tomcat, configuring Apache as a reverse proxy; `start_server.sh` launched services and enabled auto-restart on reboot; and `stop_server.sh` safely halted services before deployment to prevent conflicts.
+Deployment was triggered during the final stage of the CI pipeline orchestrated by AWS CodeBuild. Leveraging the output from CodeBuild, CodeDeploy retrieved the application archive from the encrypted S3 bucket and initiated deployment based on the `appspec.yml` configuration. The `appspec.yml` file defined how application files were mapped and outlined lifecycle event hooks, which were supported by custom shell scripts. These included `install_dependencies.sh` to install and configure Apache HTTP Server and Apache Tomcat, `start_server.sh` to launch services and enable auto-restart on reboot and `stop_server.sh` to gracefully halt services before deployment.
 
-CodeDeploy was configured with a deployment group targeting EC2 instances tagged with `role=webserver`. IAM roles were assigned for secure access, and the CodeDeploy agent was installed and managed via AWS Systems Manager. Deployment success was verified via the EC2 instance’s public DNS, confirming that all components were correctly installed and functioning.
-
-This setup enabled scalable, tag-based deployments with rollback support and minimal operational overhead.
+After deployment, application functionality was verified by accessing the EC2 instance’s public endpoint, confirming that the service was running as expected.
+This pipeline, built on infrastructure-as-code principles, enabled rapid, reproducible releases with minimal operational overhead—validating the effectiveness of a streamlined and reliable deployment process.
 
 ---
 
