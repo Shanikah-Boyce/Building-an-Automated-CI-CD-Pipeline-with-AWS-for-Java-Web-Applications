@@ -97,7 +97,7 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 ## 🔄 End-to-End Automation with AWS CodePipeline
 To unify the CI/CD process, AWS CodePipeline was introduced as the central orchestrator.
 
-<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
 
 Once changes are pushed to the master branch, the pipeline automatically pulls the latest code, runs the build process and deploys the updated application, all without manual intervention. Each stage is connected in sequence, ensuring consistent and reliable execution across the lifecycle.
 
@@ -105,25 +105,9 @@ This enabled near real-time deployment, where code changes were automatically bu
 
 A simple code change was used to validate the pipeline, and the full process executed successfully — confirming the setup’s speed, reliability, and readiness for production use.
 
-This completes a fully automated CI/CD workflow — from development to deployment — using native AWS services.
-
-
-
-
-
-
-//
-AWS CodePipeline ties the entire CI/CD process together, integrating GitHub, CodeBuild, and CodeDeploy into a seamless workflow. The pipeline continuously monitors the `master` branch via webhook triggers, enabling near real-time execution whenever new code is pushed.
-
-<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
-
-Upon detecting a change, the pipeline begins with the Source stage, retrieving the latest code from GitHub. It then moves to the Build stage, where CodeBuild compiles and packages the application. Operating in Superseded mode, the pipeline processes only the most recent revision, avoiding redundant builds and conserving resources. IAM roles are automatically provisioned to enforce least-privilege access across services.
-
-In the final stage, CodeDeploy deploys the application to EC2 instances with zero downtime, ensuring uninterrupted access for users. If a deployment fails, CodeDeploy rolls back to the last stable version, preserving production integrity.
-
-A minor code change was used to validate the pipeline’s responsiveness. The successful execution confirmed the reliability and efficiency of the CI/CD strategy.
 <img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
 
+This completes a fully automated CI/CD workflow — from development to deployment — using native AWS services.
 
 ---
 
