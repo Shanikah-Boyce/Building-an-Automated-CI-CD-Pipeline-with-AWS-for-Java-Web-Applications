@@ -99,7 +99,7 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 
 This project uses AWS CodePipeline to orchestrate a fully automated CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
 
-The pipeline—`nextwork-devops-cicd`—is built using Pipeline Type V2 and runs in superseded execution mode, ensuring only the latest code changes are deployed by automatically canceling outdated runs. This design reduces deployment risk and maintains consistency across environments.
+The pipeline`nextwork-devops-cicd`—is built using Pipeline Type V2 and runs in superseded execution mode, ensuring only the latest code changes are deployed by automatically canceling outdated runs. This design reduces deployment risk and maintains consistency across environments.
 
 CodePipeline is triggered by webhook events on the GitHub `master` branch. It then delegates the build phase to AWS CodeBuild, which compiles and tests the application while resolving dependencies via AWS CodeArtifact. Build artifacts are stored in Amazon S3, and deployment is handled by AWS CodeDeploy, which updates the EC2 instance.
 
