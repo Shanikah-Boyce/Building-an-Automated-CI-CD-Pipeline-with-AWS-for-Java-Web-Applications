@@ -70,15 +70,27 @@ The deployment process began with AWS CloudFormation provisioning a production-g
 Using infrastructure as code, CloudFormation enabled automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches. This approach ensured consistent environments and reduced manual errors.
 
 
-## Automated
-This dedicated Amazon EC2 instance, provisioned through AWS CloudFormation, served as the deployment target for AWS CodeDeploy, using the `network-devops-cicd-deploymentgroup` with the AllAtOnce strategy. This method replaced the application in a single step, resulting in brief downtime but offering a fast and simple deployment approach ideal for lean infrastructure environments.
+Here's your revised text with corrected grammar, improved clarity, and consistent formatting, while preserving your original intent and technical accuracy:
 
-To maintain system health with minimal manual effort, AWS Systems Manager was configured for automated maintenance. Every 14 days, it handled tasks such as installing or updating the CodeDeploy Agent, cleaning up logs and applying system updates. This ensured the environment remained secure and performant without requiring direct intervention.
+---
 
-Deployment was triggered during the final stage of the CI pipeline orchestrated by AWS CodeBuild. Leveraging the output from CodeBuild, CodeDeploy retrieved the application archive from the encrypted S3 bucket and initiated deployment based on the `appspec.yml` configuration. The `appspec.yml` file defined how application files were mapped and outlined lifecycle event hooks, which were supported by custom shell scripts. These included `install_dependencies.sh` to install and configure Apache HTTP Server and Apache Tomcat, `start_server.sh` to launch services and enable auto-restart on reboot and `stop_server.sh` to gracefully halt services before deployment.
+## Application Deployment with AWS CodeDeploy
+After the application was built and packaged by AWS CodeBuild, deployment to the production EC2 instance was automated using AWS CodeDeploy, completing the continuous integration and delivery pipeline. This single EC2 instance, hosted in a dedicated production VPC, ensured isolation from development resources.
 
-After deployment, application functionality was verified by accessing the EC2 instance’s public endpoint, confirming that the service was running as expected.
-This pipeline, built on infrastructure-as-code principles, enabled rapid, reproducible releases with minimal operational overhead—validating the effectiveness of a streamlined and reliable deployment process.
+The deployment process was triggered directly by CodeBuild as part of the post-build phase. Once the `WAR` file, `appspec.yml`, and supporting scripts were uploaded to an encrypted Amazon S3 bucket, CodeDeploy initiated the deployment using the AllAtOnce strategy. This approach replaced the existing application in a single step, resulting in brief but controlled downtime. Its simplicity and speed made it well-suited for the lightweight production environment.
+
+Deployment behavior was defined in the `appspec.yml` file, which specified file mappings and lifecycle event hooks. These hooks invoked custom scripts to manage application services:
+- `install_dependencies.sh` installed and configured Apache HTTP Server and Apache Tomcat.
+- `stop_server.sh` gracefully stopped services before deployment.
+- `start_server.sh` restarted services and enabled auto-restart on reboot.
+
+To maintain security, CodeDeploy operated under the `NextWorkCodeDeployRole` IAM role, which provided tightly scoped permissions to access required AWS resources and interact with the target EC2 instance. This ensured secure, auditable, and controlled deployments.
+
+Once deployment was complete, the application was validated by accessing the EC2 instance’s public endpoint, confirming that services were up and responding as expected. 
+
+<img width="942" height="345" alt="image" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
+
+With this setup, each release was fast, fully automated, and consistent, reflecting infrastructure-as-code and DevOps best practices.
 
 ---
 
