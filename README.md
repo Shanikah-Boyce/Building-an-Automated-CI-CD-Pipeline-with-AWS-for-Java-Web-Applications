@@ -97,13 +97,16 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 ## 🔄 End-to-End Automation with AWS CodePipeline
 To unify and automate the entire CI/CD workflow, AWS CodePipeline was implemented as the central orchestrator for build, test and deployment processes.
 
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
+
 The pipeline is structured into three main stages:
 
 <img width="834" height="503" alt="image" src="https://github.com/user-attachments/assets/811769e5-646b-4752-9994-66a81db97cf2" />
 
 ### Source Stage
 This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
-<img width="608" height="463" alt="image" src="https://github.com/user-attachments/assets/27c09dc4-cbe3-4271-9d47-090a74d60598" />
+
+<img width="491" height="507" alt="image" src="https://github.com/user-attachments/assets/8f9791ed-b7c6-470b-bc56-23f14e5c508b" />
 
 ### Build Stage
 CodeBuild compiles the source, runs tests, and packages the application for deployment. Using a managed build project ensures consistency and scalability across builds.
@@ -116,48 +119,16 @@ AWS CodeDeploy handles deployment to the target environment. Rollback is automat
 <img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-To unify the CI/CD process, AWS CodePipeline was introduced as the central orchestrator.
-
-<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
-
-Once changes are pushed to the master branch, the pipeline automatically pulls the latest code, runs the build process and deploys the updated application, all without manual intervention. Each stage is connected in sequence, ensuring consistent and reliable execution across the lifecycle.
-
-This enabled near real-time deployment, where code changes were automatically built and released within minutes of being pushed.
-
-A simple code change was used to validate the pipeline, and the full process executed successfully — confirming the setup’s speed, reliability, and readiness for production use.
-
-<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
-
-This completes a fully automated CI/CD workflow — from development to deployment — using native AWS services.
-
 ---
 
 ## ✅ Outcome
 
 By automating software delivery with AWS-native tools, this project achieved faster deployment cycles, reduced manual intervention, improved security and traceability, and scalable infrastructure-as-code provisioning. The result is a robust foundation for modern DevOps workflows in cloud-native Java applications.
 
+<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
 ---
 
-Let me know if you'd like help formatting this into a `README.md` file with badges, licensing, or contribution guidelines—or if you want to break it into modular documentation for GitHub Pages.
+
 
 
 
