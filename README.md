@@ -98,19 +98,23 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 To unify and automate the entire CI/CD workflow, AWS CodePipeline was implemented as the central orchestrator for build, test and deployment processes.
 
 The pipeline is structured into three main stages:
+
+<img width="834" height="503" alt="image" src="https://github.com/user-attachments/assets/811769e5-646b-4752-9994-66a81db97cf2" />
+
 ### Source Stage
 This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
 
-<img width="533" height="539" alt="image" src="https://github.com/user-attachments/assets/2a4d0d19-9ccd-4522-a763-b9f9b7da6b76" />
+<img width="617" height="461" alt="image" src="https://github.com/user-attachments/assets/b4ecd393-099d-4183-bae1-b51bc24e4b52" />
 
 ### Build Stage
 CodeBuild compiles the source, runs tests, and packages the application for deployment. Using a managed build project ensures consistency and scalability across builds.
 
-
+<img width="634" height="847" alt="image" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
 
 ## Deploy Stage
 AWS CodeDeploy handles deployment to the target environment. Rollback is automatically triggered on deployment failure, providing a safety net for production stability.
 
+<img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 
 
 
