@@ -95,6 +95,43 @@ With this setup, each release was fast, fully automated, and consistent, reflect
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
+To unify and automate the entire CI/CD workflow, AWS CodePipeline was implemented as the central orchestrator for build, test and deployment processes.
+
+The pipeline is structured into three main stages:
+### Source Stage
+This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
+
+<img width="533" height="539" alt="image" src="https://github.com/user-attachments/assets/2a4d0d19-9ccd-4522-a763-b9f9b7da6b76" />
+
+### Build Stage
+CodeBuild compiles the source, runs tests, and packages the application for deployment. Using a managed build project ensures consistency and scalability across builds.
+
+
+
+## Deploy Stage
+AWS CodeDeploy handles deployment to the target environment. Rollback is automatically triggered on deployment failure, providing a safety net for production stability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
 To unify the CI/CD process, AWS CodePipeline was introduced as the central orchestrator.
 
 <img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
