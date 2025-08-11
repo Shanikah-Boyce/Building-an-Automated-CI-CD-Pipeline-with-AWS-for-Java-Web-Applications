@@ -1,7 +1,13 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
 In modern software development, rapid and reliable delivery is essential. This project was designed to implement a fully automated CI/CD pipeline using AWS services for a Java-based web application. The goal was to eliminate manual deployment bottlenecks, enforce security best practices, and ensure consistent, reproducible builds across environments.
 
-The pipeline integrates several core AWS services. AWS CodePipeline orchestrates the overall workflow. AWS CodeBuild handles automated compilation and testing. AWS CodeDeploy manages zero-downtime deployments. AWS CodeArtifact secures and centralizes dependency management. GitHub serves as the version control system and triggers the pipeline automatically on code changes. Artifacts are deployed to EC2 instances provisioned via AWS CloudFormation, which improves deployment speed, reduces human error, and enhances traceability.
+The pipeline integrates several core AWS services. 
+- AWS CodePipeline orchestrates the end-to-end CI/CD workflow.
+- AWS CodeBuild automates compilation and testing of the application.
+- AWS CodeDeploy performs zero-downtime deployments to EC2 instances.
+- AWS CodeArtifact secures and centralizes Maven dependency management.
+- GitHub acts as the version control system and triggers the pipeline on code changes.
+- AWS CloudFormation provisions EC2 infrastructure, improving deployment speed, reducing human error, and enhancing traceability.
 
 ---
 
@@ -84,11 +90,20 @@ Once deployment was complete, the application was validated by accessing the EC2
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
+
 AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment. The pipeline, named `nextwork-devops-cicd`, was built using Pipeline Type V2 and ran in superseded execution mode. This ensured that only the latest code changes were deployed by automatically canceling outdated runs, reducing deployment risk and maintaining consistency across environments.
 
 CodePipeline was triggered by webhook events on the GitHub `master` branch. It delegated the build phase to AWS CodeBuild, which compiled and tested the application while resolving dependencies via AWS CodeArtifact. Build artifacts were stored in Amazon S3, and deployment was handled by AWS CodeDeploy, which updated the EC2 instance.
 
-Each stage was modular and purpose-built. CodePipeline managed execution flow, enforced success criteria, and passed artifacts between services. On deployment failure, automatic rollback was triggered via CodeDeploy to maintain system stability. Access control was enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which followed least-privilege principles and provided scoped permissions to all integrated services.
+Each stage was modular and purpose-built. CodePipeline managed execution flow, enforced success criteria and passed artifacts between services. On deployment failure, automatic rollback was triggered via CodeDeploy to maintain system stability. Access control was enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which followed least-privilege principles and provided scoped permissions to all integrated services.
+
+<p align="center">
+  <img width="200" alt="image1" src="https://github.com/user-attachments/assets/8f9791ed-b7c6-470b-bc56-23f14e5c508b" />
+  <img width="200" alt="image2" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
+  <img width="200" alt="image3" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
+</p>
+
 
 ---
 ## Overcoming Challenges and Achieving Results
@@ -99,37 +114,18 @@ Through this experience, I advanced my expertise in cloud-native DevOps practice
 Looking ahead, the pipeline can be further enhanced by implementing blue/green deployment strategies using AWS CodeDeploy. This approach will enable zero-downtime releases and safer rollbacks by seamlessly shifting traffic between application versions. Additionally, expanding to multi-region deployments will improve application availability, reduce latency, and strengthen disaster recovery by distributing infrastructure and workloads across multiple AWS regions. These future enhancements will significantly increase system resilience, scalability, and user experience, positioning the pipeline to support complex, global applications with ease.
 
 ---
-## Conclusion
-This project successfully implements a fully automated CI/CD pipeline using AWS services for a Java-based web application. By integrating AWS CodePipeline, CodeBuild, CodeDeploy, and CodeArtifact, the pipeline ensures rapid, repeatable, and secure software delivery from source control to production. Manual steps were eliminated, reducing human error, improving deployment speed, and enforcing consistent environments through infrastructure as code.
 
-Through the use of IAM roles, temporary credentials, and artifact verification, the solution also emphasizes security and governance—critical for enterprise-grade DevOps workflows. With the pipeline in place, each release is not only faster and more reliable but also aligned with cloud-native best practices.
 
-### Personal reflection
-This project deepened my expertise in AWS DevOps services, reinforced the value of automation in reducing operational risk, and taught me the importance of designing for both speed and security from the start. The experience also strengthened my problem-solving skills—especially in diagnosing deployment issues and designing resilient token management solutions.
 
----
-To orchestrate the complete CI/CD workflow, AWS CodePipeline serves as the automation backbone. The pipeline (`nextwork-devops-cicd`) is configured with Pipeline Type V2 and operates in superseded execution mode, which automatically cancels any in-progress runs when a newer change is detected. This mechanism ensures optimal resource utilization and maintains deployment consistency.
 
-A dedicated Amazon S3 bucket functions as the default artifact store, while the pipeline is securely governed by the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`. This role enables seamless and secure integration with AWS CodeBuild, CodeDeploy and Amazon S3, facilitating a robust and scalable deployment process.
-
-<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
-
-The pipeline is structured into three main stages:
-
-<img width="834" height="503" alt="image" src="https://github.com/user-attachments/assets/811769e5-646b-4752-9994-66a81db97cf2" />
 
 ### Source Stage
-This stage continuously monitors the master branch on GitHub. When changes are pushed, it automatically triggers the pipeline, generating a default artifact for downstream stages.
 
 <img width="491" height="507" alt="image" src="https://github.com/user-attachments/assets/8f9791ed-b7c6-470b-bc56-23f14e5c508b" />
 
-### Build Stage
-CodeBuild compiles the source, runs tests, and packages the application for deployment. Using a managed build project ensures consistency and scalability across builds.
 
 <img width="634" height="847" alt="image" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
 
-## Deploy Stage
-AWS CodeDeploy handles deployment to the target environment. Rollback is automatically triggered on deployment failure, providing a safety net for production stability.
 
 <img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 
