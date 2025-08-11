@@ -47,6 +47,8 @@ Each build ran in a clean, isolated environment defined by the `buildspec.yml` f
 - Build: Compiles the application using Maven with a custom `settings.xml`.
 - Post-build: Packages the compiled code into a WAR file and prepares deployment assets.
 
+<img width="1820" height="958" alt="image" src="https://github.com/user-attachments/assets/e52396b3-9121-49d5-bc2f-be748ae339bb" />
+
 Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deployment scripts were bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket named `nextwork-devops-cicd-shanikah`. 
 
 <img width="1859" height="331" alt="image" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
@@ -54,9 +56,6 @@ Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deplo
 Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
 
 <img width="1883" height="945" alt="image" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
-
-
-<img width="1820" height="958" alt="image" src="https://github.com/user-attachments/assets/e52396b3-9121-49d5-bc2f-be748ae339bb" />
 
 ---
 # Production Environment
