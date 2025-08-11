@@ -28,17 +28,17 @@ Version control was established using Git, securely connected to GitHub via a Pe
 
 ## 🔐 Secure Dependency Management with AWS CodeArtifact
 To establish a secure and consistent foundation for managing Maven packages, AWS CodeArtifact was configured as the central repository. A domain named `nextwork` was provisioned to group related repositories, including `nextwork-devops-cicd`, which used Maven Central as its upstream source. 
-
-<img width="889" height="338" alt="image" src="https://github.com/user-attachments/assets/9b0965ae-6c28-4184-9396-318c65cd54f9" />
-
+<p align="center">
+  <img width="700" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/9b0965ae-6c28-4184-9396-318c65cd54f9" />
+</p>
 This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
 
 Access to AWS CodeArtifact was managed through an IAM role with read-only permissions for both CodeArtifact and AWS Security Token Service (STS). The role acquired temporary credentials via STS, which are used to generate an authorization token through the AWS CLI. This token was stored in the `CODEARTIFACT_AUTH_TOKEN` environment variable and injected into Maven’s `settings.xml` as a bearer token profile. This enabled secure, time-limited access to the repository without relying on static credentials.
 
 Since the token expires after twelve hours, an automated refresh mechanism was implemented to regenerate and re-inject the token during long-running build processes. This ensured uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieved all dependencies directly from CodeArtifact, aligning builds with internal governance policies. 
-
-<img width="1797" height="970" alt="image" src="https://github.com/user-attachments/assets/546f99e9-441a-4a57-942c-b03c0b30ef6c" />
-
+<p align="center">
+  <img width="800" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/546f99e9-441a-4a57-942c-b03c0b30ef6c" />
+</p>
 A post-build verification step confirmed the presence and integrity of expected packages, validating compliance with enterprise DevOps standards.
 
 ---
