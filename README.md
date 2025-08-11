@@ -14,7 +14,7 @@ The pipeline integrates several core AWS services.
 
 ---
 
-## 🖥Remote Development Environment on EC2
+## Working Remotely on a Secure EC2 Instance
 To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair.
 
 <img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
@@ -29,7 +29,7 @@ Version control was established using Git, securely connected to GitHub via a Pe
 
 ---
 
-## 🔐 Secure Dependency Management with AWS CodeArtifact
+## Using AWS CodeArtifact to Organize and Secure Project Libraries
 To establish a secure and consistent foundation for managing Maven packages, AWS CodeArtifact was configured as the central repository. A domain named `nextwork` was provisioned to group related repositories, including `nextwork-devops-cicd`, which used Maven Central as its upstream source. 
 <p align="center">
   <img width="700" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/9b0965ae-6c28-4184-9396-318c65cd54f9" />
@@ -45,7 +45,7 @@ Since the token expires after twelve hours, an automated refresh mechanism was i
 A post-build verification step confirmed the presence and integrity of expected packages, validating compliance with enterprise DevOps standards.
 
 ---
-## ⚙️ Continuous Integration with AWS CodeBuild
+## Automating Code Compilation and Testing with AWS CodeBuild
 To automate the build and deployment process for the Java application, AWS CodeBuild served as the backbone of the continuous integration (CI) pipeline. It compiled, tested, and packaged the application into a deployable WAR (Web Application Archive) file, all without manual intervention.
 
 The pipeline integrated seamlessly with GitHub via the official GitHub App, triggering builds automatically on every push to the `master` branch. This eliminated the need for static credentials and manual triggers, ensuring a secure and efficient workflow.
@@ -62,20 +62,18 @@ Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deplo
 
 <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
 
-
 Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
 <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
 
-
 ---
-## Provisioning Production Resources Using AWS CloudFormation
+## Launching Production Servers Automatically with CloudFormation
 The production environment was provisioned using AWS CloudFormation, which deployed a production-grade EC2 instance along with its complete networking infrastructure. This included a virtual private cloud, subnets, route tables, an internet gateway and a security group. The EC2 instance, tagged as webserver, was designed specifically to host the live application and was intentionally separated from the development environment to maintain a clear boundary.
 
 Using infrastructure as code allowed for automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches, ensuring consistent environments and reducing manual errors.
 
 ---
 
-## Application Deployment with AWS CodeDeploy
+## Delivering Updates to Live Servers Using AWS CodeDeploy
 Once the application was built and packaged by AWS CodeBuild, deployment to the production EC2 instance was automated using AWS CodeDeploy. This completed the continuous integration and delivery pipeline. The EC2 instance, hosted in a dedicated production VPC, ensured isolation from development resources.
 
 The deployment process was triggered directly by CodeBuild as part of the post-build phase. After the `WAR` file, `appspec.yml` and supporting scripts were uploaded to an encrypted Amazon S3 bucket, CodeDeploy initiated the deployment using the AllAtOnce strategy. This approach replaced the existing application in a single step, resulting in brief but controlled downtime. Its simplicity and speed made it well-suited for the lightweight production environment.
@@ -94,7 +92,7 @@ Once deployment was complete, the application was validated by accessing the EC2
 
 ---
 
-## 🔄 End-to-End Automation with AWS CodePipeline
+## Coordinating the Workflow with AWS CodePipeline
 AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
 <p align="center">
   <img width="800" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
