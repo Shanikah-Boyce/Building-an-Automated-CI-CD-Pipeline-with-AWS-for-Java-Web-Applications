@@ -1,24 +1,22 @@
 # Automated CI/CD Pipeline with AWS for Java Web Application
+This project demonstrates a fully automated CI/CD pipeline built on AWS for a Java-based web application. It replaces slow, error-prone manual deployments with a secure, scalable, and maintainable cloud-native workflow that spans from source control to production release.
 
-This project demonstrates a fully automated CI/CD pipeline using AWS services for a Java-based web application. It replaces slow, error-prone manual deployments with a secure, scalable, and maintainable cloud-native workflow—from source control to production release.
-
-The pipeline integrates four core AWS services: AWS CodePipeline orchestrates the workflow, AWS CodeBuild handles automated builds and tests, AWS CodeDeploy manages zero-downtime deployments, and AWS CodeArtifact secures and centralizes dependency management. GitHub serves as the version control system, triggering the pipeline on code changes. Artifacts are deployed to EC2 instances provisioned via CloudFormation, improving deployment speed, reducing human error, and enhancing traceability.
+The pipeline integrates several core AWS services. AWS CodePipeline orchestrates the overall workflow. AWS CodeBuild handles automated compilation and testing. AWS CodeDeploy manages zero-downtime deployments. AWS CodeArtifact secures and centralizes dependency management. GitHub serves as the version control system and triggers the pipeline automatically on code changes. Artifacts are deployed to EC2 instances provisioned via AWS CloudFormation, which improves deployment speed, reduces human error, and enhances traceability.
 
 ---
 
 ## 🖥Remote Development Environment on EC2
-
 To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair.
 
 <img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
 
-SSH access was limited to the instance owner, reducing the attack surface and preventing unauthorized access.
+SSH access was limited to the instance owner, minimizing the attack surface and preventing unauthorized access.
  
-Development was streamlined using Visual Studio Code’s Remote – SSH extension, allowing direct editing on the EC2 instance without manual file transfers. The environment was configured with Amazon Corretto 8 for Java runtime and Apache Maven for build automation. The project was initialized using Maven’s archetype system, promoting a standardized and modular codebase structure.
+Development was streamlined using Visual Studio Code’s Remote – SSH extension, which enabled direct editing on the EC2 instance without manual file transfers. The environment was configured with Amazon Corretto 8 for the Java runtime and Apache Maven for build automation. The project was initialized using Maven’s archetype system, promoting a standardized and modular codebase structure.
 
 <img width="1888" height="631" alt="image" src="https://github.com/user-attachments/assets/cb03eb9d-01d0-4f6f-a747-13d79bb08c2c" />
 
-Version control was established with Git, securely connected to GitHub via a Personal Access Token (PAT). This laid the foundation for seamless integration with the CI/CD pipeline.
+Version control was established using Git, securely connected to GitHub via a Personal Access Token (PAT). This setup laid the foundation for seamless integration with the CI/CD pipeline.
 
 ---
 
