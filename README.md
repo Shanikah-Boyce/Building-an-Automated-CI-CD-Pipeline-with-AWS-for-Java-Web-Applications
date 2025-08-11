@@ -91,6 +91,12 @@ CodePipeline was triggered by webhook events on the GitHub `master` branch. It d
 Each stage was modular and purpose-built. CodePipeline managed execution flow, enforced success criteria, and passed artifacts between services. On deployment failure, automatic rollback was triggered via CodeDeploy to maintain system stability. Access control was enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which followed least-privilege principles and provided scoped permissions to all integrated services.
 
 ---
+## Overcoming Challenges and Achieving Results
+Key challenges included managing secure access to Maven dependencies without exposing static credentials and ensuring consistent infrastructure across environments. These were resolved by integrating AWS STS with CodeArtifact for automated token refresh during builds, and by using CloudFormation templates with rollback policies to maintain environment consistency. The outcome was a fully automated CI/CD pipeline that eliminated manual intervention, improved deployment speed and reliability, ensured reproducible and traceable builds, and enhanced security through IAM roles and temporary credentials. This project deepened my expertise in cloud-native DevOps practices, secure credential management, and infrastructure as code, resulting in a production-ready pipeline that supports rapid iteration, consistent environments, and secure delivery for Java web applications.
+
+
+
+---
 ## Conclusion
 This project successfully implements a fully automated CI/CD pipeline using AWS services for a Java-based web application. By integrating AWS CodePipeline, CodeBuild, CodeDeploy, and CodeArtifact, the pipeline ensures rapid, repeatable, and secure software delivery from source control to production. Manual steps were eliminated, reducing human error, improving deployment speed, and enforcing consistent environments through infrastructure as code.
 
