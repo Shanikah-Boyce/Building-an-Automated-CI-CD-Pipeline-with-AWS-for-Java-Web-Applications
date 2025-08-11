@@ -13,8 +13,7 @@ The pipeline integrates several core AWS services.
 - AWS CloudFormation provisions EC2 infrastructure, improving deployment speed, reducing human error, and enhancing traceability.
 
 ---
-# Development Setup
-## Remote Coding on a Secure EC2 Instance
+## Development Setup: Remote Coding on a Secure EC2 Instance
 To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair.
 
 <img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
@@ -73,7 +72,7 @@ Using infrastructure as code allowed for automated and version-controlled deploy
 
 ---
 
-## Delivering Updates to Live Servers Using AWS CodeDeploy
+## Automated Deployment to Production Servers with AWS CodeDeploy
 Once the application was built and packaged by AWS CodeBuild, deployment to the production EC2 instance was automated using AWS CodeDeploy. This completed the continuous integration and delivery pipeline. The EC2 instance, hosted in a dedicated production VPC, ensured isolation from development resources.
 
 The deployment process was triggered directly by CodeBuild as part of the post-build phase. After the `WAR` file, `appspec.yml` and supporting scripts were uploaded to an encrypted Amazon S3 bucket, CodeDeploy initiated the deployment using the AllAtOnce strategy. This approach replaced the existing application in a single step, resulting in brief but controlled downtime. Its simplicity and speed made it well-suited for the lightweight production environment.
@@ -92,7 +91,7 @@ Once deployment was complete, the application was validated by accessing the EC2
 
 ---
 
-## Coordinating the Workflow with AWS CodePipeline
+## COrchestrating the CI/CD Pipeline with AWS CodePipeline
 AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
 <p align="center">
   <img width="800" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
