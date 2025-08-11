@@ -90,9 +90,11 @@ Once deployment was complete, the application was validated by accessing the EC2
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
+AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
+
 <img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
 
-AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment. The pipeline, named `nextwork-devops-cicd`, was built using Pipeline Type V2 and ran in superseded execution mode. This ensured that only the latest code changes were deployed by automatically canceling outdated runs, reducing deployment risk and maintaining consistency across environments.
+The pipeline, named `nextwork-devops-cicd`, was built using Pipeline Type V2 and ran in superseded execution mode. This ensured that only the latest code changes were deployed by automatically canceling outdated runs, reducing deployment risk and maintaining consistency across environments.
 
 CodePipeline was triggered by webhook events on the GitHub `master` branch. It delegated the build phase to AWS CodeBuild, which compiled and tested the application while resolving dependencies via AWS CodeArtifact. Build artifacts were stored in Amazon S3, and deployment was handled by AWS CodeDeploy, which updated the EC2 instance.
 
@@ -107,31 +109,15 @@ Each stage was modular and purpose-built. CodePipeline managed execution flow, e
 
 ---
 ## Overcoming Challenges and Achieving Results
-This project delivered a fully automated CI/CD pipeline that eliminated manual interventions, accelerated deployment speed, and boosted reliability. By leveraging IAM roles with temporary credentials, the pipeline ensured robust security while maintaining reproducible and traceable builds across environments.
+This project delivered a fully automated CI/CD pipeline that eliminated manual interventions, accelerated deployment speed, and boosted reliability. 
+
+<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
+
+By leveraging IAM roles with temporary credentials, the pipeline ensured robust security while maintaining reproducible and traceable builds across environments.
 
 Through this experience, I advanced my expertise in cloud-native DevOps practices, secure credential management, and infrastructure as code. The result is a production-ready pipeline that enables rapid development cycles, consistent environment provisioning, and secure delivery tailored for Java web applications.
 
 Looking ahead, the pipeline can be further enhanced by implementing blue/green deployment strategies using AWS CodeDeploy. This approach will enable zero-downtime releases and safer rollbacks by seamlessly shifting traffic between application versions. Additionally, expanding to multi-region deployments will improve application availability, reduce latency, and strengthen disaster recovery by distributing infrastructure and workloads across multiple AWS regions. These future enhancements will significantly increase system resilience, scalability, and user experience, positioning the pipeline to support complex, global applications with ease.
-
----
-
-
-
-
-
-### Source Stage
-
-<img width="491" height="507" alt="image" src="https://github.com/user-attachments/assets/8f9791ed-b7c6-470b-bc56-23f14e5c508b" />
-
-
-<img width="634" height="847" alt="image" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
-
-
-<img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
-
-By integrating AWS-native services into a unified CI/CD pipeline, this implementation delivers rapid release cycles, robust security controls, and scalable infrastructure-as-code provisioning. It provides a resilient foundation for modern DevOps workflows, enabling continuous delivery of cloud-native Java applications with minimal manual overhead.
-
-<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
 
 ---
 
