@@ -39,19 +39,19 @@ A post-build verification step confirmed the presence and integrity of expected 
 ## ⚙️ Continuous Integration with AWS CodeBuild
 To automate the build and deployment process for the Java application, AWS CodeBuild served as the backbone of the continuous integration (CI) pipeline. It compiled, tested, and packaged the application into a deployable WAR (Web Application Archive) file, all without manual intervention.
 
-The pipeline integrates seamlessly with GitHub via the official GitHub App, triggering builds automatically on every push to the `master` branch. This eliminates static credentials and manual intervention, ensuring a secure and efficient workflow.
+The pipeline integrated seamlessly with GitHub via the official GitHub App, triggering builds automatically on every push to the `master` branch. This eliminated the need for static credentials and manual triggers, ensuring a secure and efficient workflow.
 
-Each build runs in a clean, isolated environment defined by the `buildspec.yml` file, progressing through four phases:
+Each build ran in a clean, isolated environment defined by the `buildspec.yml` file. The build process progressed through four phases:
 - Install: Sets up the Java runtime using Amazon Corretto 8.
 - Pre-build: Initializes the environment and retrieves a temporary token to authenticate with AWS CodeArtifact.
 - Build: Compiles the application using Maven with a custom `settings.xml`.
 - Post-build: Packages the compiled code into a WAR file and prepares deployment assets.
 
-Upon completion, all artifacts, including the `WAR` file, `appspec.yml` and deployment scripts, are bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket (`nextwork-devops-cicd-shanikah`). 
+Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deployment scripts were bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket named `nextwork-devops-cicd-shanikah`. 
 
 <img width="1859" height="331" alt="image" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
 
-Build logs are streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
+Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
 
 <img width="1883" height="945" alt="image" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
 
