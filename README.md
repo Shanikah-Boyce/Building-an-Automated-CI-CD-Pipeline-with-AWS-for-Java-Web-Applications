@@ -2,7 +2,7 @@
 ## Project Overview
 In modern software development, rapid and reliable delivery is essential. This project was designed to implement a fully automated CI/CD pipeline using AWS services for a Java-based web application. The goal was to eliminate manual deployment bottlenecks, enforce security best practices, and ensure consistent, reproducible builds across environments.
 
-<img width="1489" height="497" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/b68b3c92-28c9-48cd-8b88-79d5a874429e" />
+<img width="1489" height="497" alt="Untitled Diagram drawio (1)" src="https://github.com/user-attachments/assets/671687b6-e245-438d-afdf-f8a20b6d585d" />
 
 The pipeline integrates several core AWS services. 
 - AWS CodePipeline orchestrates the end-to-end CI/CD workflow.
