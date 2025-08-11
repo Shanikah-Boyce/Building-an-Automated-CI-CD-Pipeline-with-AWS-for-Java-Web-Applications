@@ -37,7 +37,7 @@ A post-build verification step confirmed the presence and integrity of expected 
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
-To automate the build and deployment process for the Java application, AWS CodeBuild serves as the backbone of the continuous integration (CI) pipeline. This setup compiles, tests, and packages the application into a deployable `WAR` (Web Application Archive) file, all without manual intervention.
+To automate the build and deployment process for the Java application, AWS CodeBuild served as the backbone of the continuous integration (CI) pipeline. It compiled, tested, and packaged the application into a deployable WAR (Web Application Archive) file, all without manual intervention.
 
 The pipeline integrates seamlessly with GitHub via the official GitHub App, triggering builds automatically on every push to the `master` branch. This eliminates static credentials and manual intervention, ensuring a secure and efficient workflow.
 
