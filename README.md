@@ -57,14 +57,12 @@ Each build ran in a clean, isolated environment defined by the `buildspec.yml` f
 
 Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deployment scripts were bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket named `nextwork-devops-cicd-shanikah`. 
 
-<p align="center">
-  <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
-</p>
+<img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
+
 
 Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
-<p align="center">
-  <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
-</p>
+<img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
+
 
 ---
 ## Provisioning Production Resources Using AWS CloudFormation
