@@ -84,7 +84,11 @@ Deployment behavior was defined in the `appspec.yml` file, which specified file 
 To maintain security, CodeDeploy operated under the `NextWorkCodeDeployRole` IAM role, which provided tightly scoped permissions to access required AWS resources and interact with the target EC2 instance. This ensured secure, auditable, and controlled deployments.
 
 Once deployment was complete, the application was validated by accessing the EC2 instance’s public endpoint, confirming that services were up and responding as expected. 
+<p align="center">
+  <img width="750" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
+</p>
 
+lll
 <img width="942" height="345" alt="image" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
 
 ---
