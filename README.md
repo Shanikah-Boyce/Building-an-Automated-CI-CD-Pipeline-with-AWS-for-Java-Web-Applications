@@ -1,7 +1,8 @@
 # Building an Automated CI/CD Pipeline with AWS for Java Web Applications
 ## Project Overview
-In modern software development, rapid and reliable delivery is essential. This project was designed to implement a fully automated CI/CD pipeline using AWS services for a Java-based web application. The goal was to eliminate manual deployment bottlenecks, enforce security best practices, and ensure consistent, reproducible builds across environments.
+In modern software development, rapid and reliable delivery is essential. This project was designed to implement a fully automated CI/CD pipeline using AWS services for a Java-based web application. On average, automated CI/CD pipelines can accelerate deployment speed by up to 70-90% compared to traditional manual processes, significantly reducing downtime and human error. The goal was to eliminate manual deployment bottlenecks, enforce security best practices, and ensure consistent, reproducible builds across environments.
 
+### Pipeline Architecture
 <img width="1489" height="497" alt="Untitled Diagram drawio (1)" src="https://github.com/user-attachments/assets/671687b6-e245-438d-afdf-f8a20b6d585d" />
 
 The pipeline integrates several core AWS services. 
