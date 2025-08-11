@@ -91,9 +91,9 @@ Once deployment was complete, the application was validated by accessing the EC2
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
 AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
-
-<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
-
+<p align="center">
+  <img width="800" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/83b206fd-0827-4b8e-a72b-b2b76f65c357" />
+</p>
 The pipeline, named `nextwork-devops-cicd`, was built using Pipeline Type V2 and ran in superseded execution mode. This ensured that only the latest code changes were deployed by automatically canceling outdated runs, reducing deployment risk and maintaining consistency across environments.
 
 CodePipeline was triggered by webhook events on the GitHub `master` branch. It delegated the build phase to AWS CodeBuild, which compiled and tested the application while resolving dependencies via AWS CodeArtifact. Build artifacts were stored in Amazon S3, and deployment was handled by AWS CodeDeploy, which updated the EC2 instance.
@@ -105,7 +105,9 @@ Each stage was modular and purpose-built. CodePipeline managed execution flow, e
   <img width="200" alt="image2" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
   <img width="200" alt="image3" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 </p>
+
 ---
+
 ## Overcoming Challenges and Achieving Results
 This project delivered a fully automated CI/CD pipeline that eliminated manual interventions, accelerated deployment speed, and boosted reliability. 
 <p align="center">
