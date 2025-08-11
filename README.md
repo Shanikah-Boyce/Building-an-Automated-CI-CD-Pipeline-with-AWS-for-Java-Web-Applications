@@ -57,11 +57,14 @@ Each build ran in a clean, isolated environment defined by the `buildspec.yml` f
 
 Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deployment scripts were bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket named `nextwork-devops-cicd-shanikah`. 
 
-<img width="1859" height="331" alt="image" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
+<p align="center">
+  <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/8a94bc12-84b8-482c-8b60-4c33aad6d3d3" />
+</p>
 
 Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and traceability.
-
-<img width="1883" height="945" alt="image" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
+<p align="center">
+  <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
+</p>
 
 ---
 ## Provisioning Production Resources Using AWS CloudFormation
@@ -84,8 +87,9 @@ Deployment behavior was defined in the `appspec.yml` file, which specified file 
 To maintain security, CodeDeploy operated under the `NextWorkCodeDeployRole` IAM role, which provided tightly scoped permissions to access required AWS resources and interact with the target EC2 instance. This ensured secure, auditable, and controlled deployments.
 
 Once deployment was complete, the application was validated by accessing the EC2 instance’s public endpoint, confirming that services were up and responding as expected. 
-
-<img width="942" height="345" alt="image" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
+<p align="center">
+  <img width="800" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/b7a967af-be52-4ee4-894f-d83d3f4e34df" />
+</p>
 
 ---
 
