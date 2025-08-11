@@ -1,5 +1,5 @@
-# Automated CI/CD Pipeline with AWS for Java Web Application
-## Project Overview
+# Automated CI/CD Pipeline with AWS
+## Delivering Java Web Applications Faster, Safer, and Smarter
 In modern software development, rapid and reliable delivery is essential. This project was designed to implement a fully automated CI/CD pipeline using AWS services for a Java-based web application. The goal was to eliminate manual deployment bottlenecks, enforce security best practices, and ensure consistent, reproducible builds across environments.
 
 <img width="1489" height="497" alt="Untitled Diagram drawio (1)" src="https://github.com/user-attachments/assets/671687b6-e245-438d-afdf-f8a20b6d585d" />
@@ -13,8 +13,8 @@ The pipeline integrates several core AWS services.
 - AWS CloudFormation provisions EC2 infrastructure, improving deployment speed, reducing human error, and enhancing traceability.
 
 ---
-
-## Working Remotely on a Secure EC2 Instance
+# Development Setup
+## Remote Coding on a Secure EC2 Instance
 To support remote development, an Amazon EC2 instance was provisioned and secured using an EC2 key pair.
 
 <img width="858" height="169" alt="image" src="https://github.com/user-attachments/assets/07c62618-7062-4b25-9091-95ef8b5d6ffe" />
