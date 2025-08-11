@@ -58,18 +58,17 @@ Build logs were streamed to Amazon CloudWatch Logs for real-time monitoring and 
 <img width="1883" height="945" alt="image" src="https://github.com/user-attachments/assets/c2da06b8-8407-4f43-912f-36a7c5723dc5" />
 
 ---
-# Production Environment
 ## Provisioning Production Resources Using AWS CloudFormation
-The deployment process began with AWS CloudFormation provisioning a production-grade EC2 instance along with its complete networking infrastructure. This included a virtual private cloud, subnets, route tables, an internet gateway, and a security group. The EC2 instance, tagged as “webserver,” was designed specifically to host the live application and was intentionally separated from the development environment to maintain a clear boundary.
+The production environment was provisioned using AWS CloudFormation, which deployed a production-grade EC2 instance along with its complete networking infrastructure. This included a virtual private cloud, subnets, route tables, an internet gateway and a security group. The EC2 instance, tagged as webserver, was designed specifically to host the live application and was intentionally separated from the development environment to maintain a clear boundary.
 
-Using infrastructure as code, CloudFormation enabled automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches. This approach ensured consistent environments and reduced manual errors.
+Using infrastructure as code allowed for automated and version-controlled deployments. Rollback and cleanup policies were configured to prevent failed or partial launches, ensuring consistent environments and reducing manual errors.
 
 ---
 
 ## Application Deployment with AWS CodeDeploy
-After the application was built and packaged by AWS CodeBuild, deployment to the production EC2 instance was automated using AWS CodeDeploy, completing the continuous integration and delivery pipeline. This single EC2 instance, hosted in a dedicated production VPC, ensured isolation from development resources.
+Once the application was built and packaged by AWS CodeBuild, deployment to the production EC2 instance was automated using AWS CodeDeploy. This completed the continuous integration and delivery pipeline. The EC2 instance, hosted in a dedicated production VPC, ensured isolation from development resources.
 
-The deployment process was triggered directly by CodeBuild as part of the post-build phase. Once the `WAR` file, `appspec.yml`, and supporting scripts were uploaded to an encrypted Amazon S3 bucket, CodeDeploy initiated the deployment using the AllAtOnce strategy. This approach replaced the existing application in a single step, resulting in brief but controlled downtime. Its simplicity and speed made it well-suited for the lightweight production environment.
+The deployment process was triggered directly by CodeBuild as part of the post-build phase. After the `WAR` file, `appspec.yml` and supporting scripts were uploaded to an encrypted Amazon S3 bucket, CodeDeploy initiated the deployment using the AllAtOnce strategy. This approach replaced the existing application in a single step, resulting in brief but controlled downtime. Its simplicity and speed made it well-suited for the lightweight production environment.
 
 Deployment behavior was defined in the `appspec.yml` file, which specified file mappings and lifecycle event hooks. These hooks invoked custom scripts to manage application services:
 - `install_dependencies.sh` installed and configured Apache HTTP Server and Apache Tomcat.
@@ -85,15 +84,11 @@ Once deployment was complete, the application was validated by accessing the EC2
 ---
 
 ## 🔄 End-to-End Automation with AWS CodePipeline
-This project uses AWS CodePipeline to orchestrate a fully automated CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment.
+AWS CodePipeline orchestrated the entire CI/CD workflow, integrating source control, build automation, dependency resolution, artifact storage, and deployment. The pipeline, named `nextwork-devops-cicd`, was built using Pipeline Type V2 and ran in superseded execution mode. This ensured that only the latest code changes were deployed by automatically canceling outdated runs, reducing deployment risk and maintaining consistency across environments.
 
-The pipeline`nextwork-devops-cicd`—is built using Pipeline Type V2 and runs in superseded execution mode, ensuring only the latest code changes are deployed by automatically canceling outdated runs. This design reduces deployment risk and maintains consistency across environments.
+CodePipeline was triggered by webhook events on the GitHub `master` branch. It delegated the build phase to AWS CodeBuild, which compiled and tested the application while resolving dependencies via AWS CodeArtifact. Build artifacts were stored in Amazon S3, and deployment was handled by AWS CodeDeploy, which updated the EC2 instance.
 
-CodePipeline is triggered by webhook events on the GitHub `master` branch. It then delegates the build phase to AWS CodeBuild, which compiles and tests the application while resolving dependencies via AWS CodeArtifact. Build artifacts are stored in Amazon S3, and deployment is handled by AWS CodeDeploy, which updates the EC2 instance.
-
-Each stage is modular and purpose-built, with CodePipeline managing execution flow, enforcing success criteria, and passing artifacts between services. On deployment failure, automatic rollback is triggered via CodeDeploy to maintain system stability.
-
-Access control is enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which follows least-privilege principles and provides scoped permissions to all integrated services.
+Each stage was modular and purpose-built. CodePipeline managed execution flow, enforced success criteria, and passed artifacts between services. On deployment failure, automatic rollback was triggered via CodeDeploy to maintain system stability. Access control was enforced through the IAM role `AWSCodePipelineServiceRole-us-east-1-nextwork-devops-cicd`, which followed least-privilege principles and provided scoped permissions to all integrated services.
 
 ---
 ## Conclusion
