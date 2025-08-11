@@ -105,14 +105,12 @@ Each stage was modular and purpose-built. CodePipeline managed execution flow, e
   <img width="200" alt="image2" src="https://github.com/user-attachments/assets/e52b14ed-798c-4d76-8089-aacc31eb8fd9" />
   <img width="200" alt="image3" src="https://github.com/user-attachments/assets/b121f24c-c1d2-4359-b4fe-c335431fea0d" />
 </p>
-
-
 ---
 ## Overcoming Challenges and Achieving Results
 This project delivered a fully automated CI/CD pipeline that eliminated manual interventions, accelerated deployment speed, and boosted reliability. 
-
-<img width="1570" height="414" alt="image" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
-
+<p align="center">
+  <img width="850" alt="Descriptive Alt Text" src="https://github.com/user-attachments/assets/4cb046dd-7c12-4928-b15c-74135e8711a9" />
+</p>
 By leveraging IAM roles with temporary credentials, the pipeline ensured robust security while maintaining reproducible and traceable builds across environments.
 
 Through this experience, I advanced my expertise in cloud-native DevOps practices, secure credential management, and infrastructure as code. The result is a production-ready pipeline that enables rapid development cycles, consistent environment provisioning, and secure delivery tailored for Java web applications.
