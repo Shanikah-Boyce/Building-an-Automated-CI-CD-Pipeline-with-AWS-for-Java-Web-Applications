@@ -27,13 +27,13 @@ To establish a secure and consistent foundation for managing Maven packages, AWS
 
 This setup enabled access to public packages while enforcing internal controls such as version pinning via `pom.xml`, artifact caching to accelerate builds, and isolation from unverified sources to reduce supply chain risks.
 
-Access to AWS CodeArtifact is managed through an IAM role with read-only permissions for both CodeArtifact and AWS Security Token Service (STS). The role acquires temporary credentials via STS, which are used to generate an authorization token through the AWS CLI. This token is stored in the `CODEARTIFACT_AUTH_TOKEN` environment variable and injected into Maven’s `settings.xml` as a bearer token profile, enabling secure, time-limited access to the repository without relying on static credentials.
+Access to AWS CodeArtifact was managed through an IAM role with read-only permissions for both CodeArtifact and AWS Security Token Service (STS). The role acquired temporary credentials via STS, which are used to generate an authorization token through the AWS CLI. This token was stored in the `CODEARTIFACT_AUTH_TOKEN` environment variable and injected into Maven’s `settings.xml` as a bearer token profile. This enabled secure, time-limited access to the repository without relying on static credentials.
 
-Since the token expires after 12 hours, an automated refresh mechanism regenerates and re-injects the token as needed during long-running build processes, maintaining uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieves all dependencies directly from CodeArtifact, ensuring that builds are isolated from external sources and aligned with internal governance policies.
+Since the token expires after twelve hours, an automated refresh mechanism was implemented to regenerate and re-inject the token during long-running build processes. This ensured uninterrupted access while minimizing credential exposure. With this configuration, Maven retrieved all dependencies directly from CodeArtifact, aligning builds with internal governance policies. 
 
 <img width="1797" height="970" alt="image" src="https://github.com/user-attachments/assets/546f99e9-441a-4a57-942c-b03c0b30ef6c" />
 
-A post-build verification step confirms the presence and integrity of expected packages, validating compliance with enterprise DevOps standards.
+A post-build verification step confirmed the presence and integrity of expected packages, validating compliance with enterprise DevOps standards.
 
 ---
 ## ⚙️ Continuous Integration with AWS CodeBuild
