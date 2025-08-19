@@ -56,7 +56,7 @@ Each build ran in a clean, isolated environment defined by the `buildspec.yml` f
 - Build: Compiles the application using Maven with a custom `settings.xml`.
 - Post-build: Packages the compiled code into a WAR file and prepares deployment assets.
 
-<img width="1820" height="958" alt="image" src="https://github.com/user-attachments/assets/e52396b3-9121-49d5-bc2f-be748ae339bb" />
+<img width="1820" height="958" alt="1" src="https://github.com/user-attachments/assets/10295b3a-c8d9-4ef5-b72c-abbd285505e7" />
 
 Upon completion, all artifacts including the `WAR` file, `appspec.yml` and deployment scripts were bundled into a ZIP archive and securely uploaded to an encrypted Amazon S3 bucket named `nextwork-devops-cicd-shanikah`. 
 
